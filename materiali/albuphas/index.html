@@ -4,40 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <title>SOEMA | Dettaglio</title>
+    <link rel="stylesheet" href="style.css">
+    <title>SOEMA | Adiplon</title>
     
     <style>
-        /* OVERRIDE LOCALE: PANNELLO SEMPRE APERTO */
+        /* OVERRIDE: PANNELLO SEMPRE APERTO */
         #pannello-info {
             bottom: 0 !important; 
             background-color: rgb(185, 177, 167);
             z-index: 50; 
+            display: flex !important;
         }
 
-        /* --- STILE IMMAGINE SINGOLA --- */
+        /* CONTENITORE FOTO SINGOLA */
         .single-image-container {
-            /* Posizione identica alla gallery */
             margin-top: 4vh; 
             margin-left: 2vh; 
-            
-            /* Non serve flex/scroll qui, è un blocco fisso */
             height: 45vh; 
+            display: block;
         }
 
+        /* STILE IMMAGINE (40vh Desktop / 60vw Mobile) */
         .single-img {
-            /* DIMENSIONI IDENTICHE ALLA GALLERY */
             height: 40vh !important;
             width: 40vh !important; 
-            
             object-fit: cover;
             display: block;
-            
-            /* Nessun cursore pointer perché non c'è nulla da cliccare/centrare */
-            cursor: default; 
         }
 
-        /* MOBILE */
         @media (max-width: 768px) {
             .single-img {
                 width: 60vw !important; 
@@ -74,32 +68,54 @@
  
        <div class="banner-container">
             <div class="partealtabannersx">
-                <span onclick="window.location.href='index.html'" class="hover-effect" style="cursor: pointer; margin-right: 10px;">Materiali,</span>
+                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer; margin-right: 10px;">Materiali,</span>
                 
-                <span onclick="window.location.href='../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+                <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
             </div>
             
             <div class="partealtabannerdx">
-                <p id="counter-display" style="margin:0;">Progetto 01</p>
+                <p style="margin:0; font-family: 'SuisseIntlmedium';">Adiplon</p>
             </div>
        </div> 
     
         <div class="single-image-container">
-            <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="single-img" alt="Progetto Specifico">
+            <img src="contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="single-img" alt="Dettaglio Materiale">
         </div>
-        
-        </div>
+      
+   </div>
 
    <footer>
-        <p id="footer-brand" onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+        <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
 
         <div id="footer-center" style="text-align: center;"> 
             <div id="txt-menu">
-                <span onclick="window.location.href='index.html'" class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
-                <span onclick="window.location.href='../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
+                <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
             </div>
             <p id="txt-address" style="display: none; margin:0; text-align: left;">20037, Via Roma 123, MI <br> info@soema.com </p>
         </div>
 
         <div id="subscribe-container">
-            <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti
+            <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
+            <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit" class="hover-effect">Invia</button>
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        function mostraForm() {
+            document.getElementById('btn-iscriviti').style.display = 'none';
+            document.getElementById('form-iscriviti').style.display = 'flex';
+            document.querySelector('footer').classList.add('searching');
+        }
+        function inviaMail(e) {
+            e.preventDefault(); 
+            document.getElementById('form-iscriviti').style.display = 'none';
+            document.getElementById('btn-iscriviti').style.display = 'block';
+            document.querySelector('footer').classList.remove('searching');
+        }
+    </script>
+</body>
+</html>
