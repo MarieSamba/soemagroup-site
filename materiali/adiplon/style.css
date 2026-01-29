@@ -1,6 +1,189 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+@font-face {
+  font-family: 'SuisseIntlnews';
+  src: url('font/SuisseIntl-News.otf') format('opentype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SuisseIntlmedium';
+  src: url('font/SuisseIntl-Medium.otf') format('opentype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SuisseIntllight';
+  src: url('font/SuisseIntl-Light.otf') format('opentype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: rgb(251, 250, 248); 
+  align-items: center; 
+  height: 100vh;
+  width: 100%;
+  margin-left: 2vh;
+  flex-direction: column;
+  overflow: hidden; 
+  display: flex; 
+}
+
+.framecentrale {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;   
+  position: relative;
+  z-index: 10;
+  width: 100vw;       
+  margin-left: -2vh; 
+  flex-grow: 1;      
+}
+
+h1 {
+  font-family: 'SuisseIntlnews';
+  font-size: 7vh;
+  color: rgb(29, 24, 21);
+  margin-left: 2vh;
+}
+
+h2 {
+  font-family: 'SuisseIntlnews';
+  font-size: 3.5vh;
+  color: rgb(29, 24, 21);
+  position: center;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  padding-bottom: 7vh;
+}
+
+p, span, button, input {
+  font-family: 'SuisseIntlmedium';
+  font-size: 2.5vh;
+  color: rgb(29, 24, 21);
+}
+
+.hover-effect:hover {
+  text-decoration: underline;
+}
+
+
+.banner-container{
+  display: flex;
+  justify-content: space-between;
+ 
+  align-items: center; 
+  margin-right: 2vh;
+  margin-left: 2vh;
+}
+
+.partealtabannersx {
+  display: flex;
+  font-size: 30px;
+ 
+  margin-right: 2vh;
+}
+
+.partealtabannersx p, .partealtabannersx span {
+  margin: 0; 
+}
+
+
+#form-iscriviti {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#form-iscriviti input {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgb(29, 24, 21);
+  outline: none;
+  width: 200px;
+  font-family: 'SuisseIntlmedium';
+  font-size: 2vh;
+  color: rgb(29, 24, 21);
+  padding: 0;
+}
+
+#form-iscriviti button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 30px;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 98%; 
+  padding-bottom: 2vh; 
+  z-index: 100; 
+  pointer-events: auto; 
+}
+
+footer p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.pannello-nascosto {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 75vh; 
+  background-color: rgb(230, 225, 220); 
+  z-index: 50; 
+  transition: bottom 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding-top: 2vh;
+}
+
+.pannello-nascosto.aperto {
+  bottom: 0;
+}
+
+.background-scroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; 
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; 
+}
+
+.moving-wrapper {
+  animation: scrollUpLoop 25s linear infinite;
+}
+
+.text-set h1 {
+  font-family: 'SuisseIntlnews'; 
+  font-size: 8vh; 
+  text-align: center;
+  margin: 0;
+  padding-bottom: 0;
+  opacity: 40%;
+  color: rgb(29, 2, 21);  
+  white-space: nowrap;
+}
+
+@keyframes scrollUpLoop {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }
