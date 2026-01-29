@@ -8,12 +8,65 @@
     <title>SOEMA | Materiali</title>
     
     <style>
-        /* OVERRIDE: Su questa pagina il pannello è SEMPRE APERTO */
+        /* OVERRIDE LOCALE: PANNELLO SEMPRE APERTO */
         #pannello-info {
             bottom: 0 !important; 
-            /* Assicura che copra tutto e abbia lo sfondo giusto */
             background-color: rgb(185, 177, 167);
             z-index: 50; 
+        }
+
+        /* --- FORZATURA DIMENSIONI GALLERY (Qui comandiamo noi) --- */
+        
+        .gallery-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            
+            /* Posizione identica al testo originale */
+            margin-top: 4vh; 
+            margin-left: 2vh; 
+            
+            /* Altezza contenitore: un po' più grande della foto */
+            height: 45vh; 
+            
+            align-items: flex-start;
+            gap: 2vh; 
+            
+            /* Nasconde barre */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+        .gallery-container::-webkit-scrollbar { display: none; }
+
+        /* LE IMMAGINI: Qui decidiamo la grandezza */
+        .gallery-img {
+            scroll-snap-align: center; 
+            flex-shrink: 0; 
+            
+            /* === ECCOLA: 40vh x 40vh === */
+            height: 40vh !important;
+            width: 40vh !important; 
+            
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .gallery-container {
+                padding-right: 15vw; 
+            }
+            .gallery-img {
+                scroll-snap-align: start; 
+                /* Su mobile un po' più grande per vederla bene: 60% larghezza schermo */
+                width: 60vw !important; 
+                height: 60vw !important; 
+            }
         }
     </style>
 </head>
@@ -46,7 +99,7 @@
        <div class="banner-container">
             <div class="partealtabannersx">
                 <span class="hover-effect" style="cursor: pointer; margin-right: 10px;">Materiali,</span>
-                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer;">Info</span>
+                <span onclick="window.location.href='../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
             </div>
             
             <div class="partealtabannerdx" onclick="scorriAvanti()" style="cursor: pointer;">
@@ -55,15 +108,10 @@
        </div> 
     
         <div class="gallery-container" id="gallery-track" onscroll="aggiornaContatore()">
-            
             <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
-            
             <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
-            
             <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
-            
             <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
-            
             <div style="min-width: 5vw; flex-shrink: 0;"></div>
         </div>
       
@@ -75,7 +123,7 @@
         <div id="footer-center" style="text-align: center;"> 
             <div id="txt-menu">
                 <span class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
-                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer;">Info</span>
+                <span onclick="window.location.href='../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
             </div>
             <p id="txt-address" style="display: none; margin:0; text-align: left;">20037, Via Roma 123, MI <br> info@soema.com </p>
         </div>
@@ -90,26 +138,20 @@
     </footer>
 
     <script>
-        // LOGICA GALLERY
         function scorriAvanti() {
             const track = document.getElementById('gallery-track');
             const img = track.querySelector('.gallery-img');
-            // Scorre della larghezza di una foto + un po' di margine
             track.scrollBy({ left: img.offsetWidth + 20, behavior: 'smooth' });
         }
-
         function centraFoto(img) {
             img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
-
         function aggiornaContatore() {
             const track = document.getElementById('gallery-track');
             const images = document.querySelectorAll('.gallery-img');
             const counter = document.getElementById('counter-display');
-            
             let center = track.scrollLeft + (track.offsetWidth / 2);
             let index = 1;
-
             images.forEach((img, i) => {
                 if (img.offsetLeft < center && (img.offsetLeft + img.offsetWidth) > center) {
                     index = i + 1;
@@ -117,14 +159,11 @@
             });
             counter.innerText = index + "/4";
         }
-
-        // LOGICA FOOTER (Copiata da Home)
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
             document.querySelector('footer').classList.add('searching');
         }
-
         function inviaMail(e) {
             e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';
