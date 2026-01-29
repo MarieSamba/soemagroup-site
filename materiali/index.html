@@ -8,58 +8,64 @@
     <title>SOEMA | Materiali</title>
     
     <style>
-        /* OVERRIDE LOCALE: PANNELLO SEMPRE APERTO */
+        /* OVERRIDE LOCALE */
         #pannello-info {
             bottom: 0 !important; 
             background-color: rgb(185, 177, 167);
             z-index: 50; 
         }
 
-
-        
+        /* --- STILE GALLERY --- */
         .gallery-container {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             
-            /* Posizione identica al testo originale */
             margin-top: 4vh; 
             margin-left: 2vh; 
             
-            /* Altezza contenitore: un po' più grande della foto */
             height: 45vh; 
             
             align-items: flex-start;
-            gap: 70vh; 
             
-            /* Nasconde barre */
+            /* GAP: Rimettiamo 2vh o 4vh. 
+               Se metti 70vh l'immagine dopo sparisce! */
+            gap: 4vh; 
+            
             scrollbar-width: none; 
             -ms-overflow-style: none;
+            
+            /* Importante: Padding destro per permettere all'ultima foto 
+               di allinearsi a sinistra senza bloccarsi */
+            padding-right: 50vw; 
         }
         .gallery-container::-webkit-scrollbar { display: none; }
 
-        /* LE IMMAGINI: Qui decidiamo la grandezza */
         .gallery-img {
-            scroll-snap-align: center; 
+            /* MODIFICA 1: Allinea a SINISTRA (Start) invece che al centro */
+            scroll-snap-align: start; 
+            
             flex-shrink: 0; 
             
-            height: 45vh !important;
-            width: 45vh !important; 
+            height: 40vh !important;
+            width: 40vh !important; 
             
             object-fit: cover;
             cursor: pointer;
             transition: transform 0.3s;
         }
 
+        .gallery-img:hover {
+            transform: scale(1.02);
+        }
 
         /* MOBILE */
         @media (max-width: 768px) {
             .gallery-container {
-                padding-right: 15vw; 
+                /* Su mobile togliamo padding extra se necessario */
+                padding-right: 20vw; 
             }
             .gallery-img {
-                scroll-snap-align: start; 
-                /* Su mobile un po' più grande per vederla bene: 60% larghezza schermo */
                 width: 60vw !important; 
                 height: 60vw !important; 
             }
@@ -108,7 +114,6 @@
             <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
             <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
             <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
-            <div style="min-width: 5vw; flex-shrink: 0;"></div>
         </div>
       
    </div>
@@ -137,29 +142,52 @@
         function scorriAvanti() {
             const track = document.getElementById('gallery-track');
             const img = track.querySelector('.gallery-img');
-            track.scrollBy({ left: img.offsetWidth + 20, behavior: 'smooth' });
+            // Calcola quanto scorrere (larghezza immagine + gap)
+            // gap deve corrispondere a quello CSS (4vh)
+            const gap = window.innerHeight * 0.04; 
+            track.scrollBy({ left: img.offsetWidth + gap, behavior: 'smooth' });
         }
+
         function centraFoto(img) {
-            img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            // MODIFICA 2: inline: 'start' porta l'immagine a SINISTRA
+            img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         }
+
         function aggiornaContatore() {
             const track = document.getElementById('gallery-track');
             const images = document.querySelectorAll('.gallery-img');
             const counter = document.getElementById('counter-display');
-            let center = track.scrollLeft + (track.offsetWidth / 2);
+            
+            // Logica aggiornata per "Start" (Sinistra)
+            // Consideriamo l'immagine attiva quella che è vicina al bordo sinistro
+            let scrollLeft = track.scrollLeft;
             let index = 1;
+
             images.forEach((img, i) => {
-                if (img.offsetLeft < center && (img.offsetLeft + img.offsetWidth) > center) {
-                    index = i + 1;
+                // Se la posizione dell'immagine è passata un po' oltre l'inizio, consideriamo la successiva
+                // Aggiungiamo un piccolo offset (10px) per tolleranza
+                if (img.offsetLeft <= (scrollLeft + 10) && (img.offsetLeft + img.offsetWidth) > scrollLeft) {
+                    // Questa logica base va bene, ma miglioriamola per il "snap"
                 }
             });
-            counter.innerText = index + "/4";
+
+            // Metodo più semplice basato sullo scroll diviso la larghezza
+            let width = images[0].offsetWidth + (window.innerHeight * 0.04); // width + gap
+            let current = Math.round(track.scrollLeft / width) + 1;
+            
+            // Limite min/max
+            if(current < 1) current = 1;
+            if(current > 4) current = 4;
+
+            counter.innerText = current + "/4";
         }
+
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
             document.querySelector('footer').classList.add('searching');
         }
+
         function inviaMail(e) {
             e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';
