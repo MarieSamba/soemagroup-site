@@ -101,7 +101,7 @@ p, span, button, input {
 #form-iscriviti {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20vh;
 }
 
 #form-iscriviti input {
