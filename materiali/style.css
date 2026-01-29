@@ -68,19 +68,11 @@ p, span, button, input {
   text-decoration: underline;
 }
 
-.video-home {
-  height: 60vh;
-  width: 60vh;
-  object-fit: cover;
-  z-index: 10;
-  display: block;
-}
 
-/* PUNTO 1: Allineamento perfetto Banner */
 .banner-container{
   display: flex;
   justify-content: space-between;
-  /* Questa riga assicura che Testi a SX e 1/4 a DX siano sulla stessa linea orizzontale */
+ 
   align-items: center; 
   margin-right: 2vh;
   margin-left: 2vh;
@@ -89,19 +81,19 @@ p, span, button, input {
 .partealtabannersx {
   display: flex;
   font-size: 30px;
-  /* Rimosso gap e gestito con margin-right inline nell'HTML per controllo preciso */
+ 
   margin-right: 2vh;
 }
 
 .partealtabannersx p, .partealtabannersx span {
-  margin: 0; /* Reset totale margini */
+  margin: 0; 
 }
 
-/* PUNTO 3: Stile Form Iscriviti */
+
 #form-iscriviti {
   display: flex;
   align-items: center;
-  gap: 20vh;
+  gap: 10px;
 }
 
 #form-iscriviti input {
