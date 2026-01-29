@@ -21,8 +21,24 @@
                 <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
                 <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
                 <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
             </div>
             <div class="text-set">
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
                 <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
                 <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
                 <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
@@ -68,8 +84,9 @@
    </div>
 
    <footer>
-        <p onclick="chiudiPannello()" class="hover-effect" style="cursor: pointer;">SOEMA</p>
-        
+        <p id="footer-brand" onclick="chiudiPannello()" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+
+
         <div id="footer-center" style="text-align: center;"> 
             <div id="txt-menu">
                 <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
@@ -90,7 +107,7 @@
     </footer>
 
     <script>
- 
+
         const pages = [
             "Soema è il partner B2B d'avanguardia per le grandi opere globali. In un mercato che richiede soluzioni radicali alla scarsità di risorse, ci siamo specializzati nella fornitura di materiali di origine organica superiore. Collaboriamo con le imprese di costruzione per nobilitare la materia prima più preziosa: il patrimonio biologico derivante dalle vittime necessarie allo sviluppo delle grandi infrastrutture.",
             "La nostra soluzione risponde alle direttive del Digital Product Passport, superando i limiti dei materiali tradizionali. Attraverso il processo Human-to-Structure, la materia biografica viene recuperata, trattata e reimmessa nel tessuto urbano. Questo approccio non solo abbatte l'impronta di carbonio, ma conferisce all'opera una longevità biologica e una profondità narrativa senza precedenti.",
@@ -107,7 +124,7 @@
             document.getElementById('main-text').innerText = pages[currentPage - 1];
         }
 
-     
+  
         function apriPannello() {
             document.getElementById('pannello-info').classList.add('aperto');
             document.getElementById('txt-menu').style.display = 'none';
@@ -121,7 +138,7 @@
         }
 
         function vaiAMateriali() {
-
+            // Qui metterai il link vero, es: window.location.href = 'materiali/index.html';
             window.location.href = 'materiali/index.html';
         }
 
@@ -129,16 +146,19 @@
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
+            
+            document.querySelector('footer').classList.add('searching');
         }
 
         function inviaMail(e) {
             e.preventDefault(); 
-         
-            alert("Mail registrata!");
-      
+
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
+            
+            document.querySelector('footer').classList.remove('searching');
         }
+                
     </script>
 
 </body>
