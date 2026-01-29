@@ -195,3 +195,70 @@ footer p {
     0% { transform: translateY(0); }
     100% { transform: translateY(-50%); }
 }
+
+
+
+/*  RESPONSIVE MOBILE */
+   @media (max-width: 768px) {
+
+    .text-set h1 {
+        font-size: 5vh;
+        padding-bottom: 1vh;
+    }
+
+    .video-home {
+        width: 70vw; 
+        height: 70vw; 
+        max-height: 50vh;
+        max-width: 50vh;
+    }
+
+
+    footer {
+        font-size: 14px; 
+        padding-bottom: 30px; 
+        width: 94%;
+        left: 3%; 
+        margin: 0;
+    }
+    
+  
+    #form-iscriviti input {
+        width: 120px;
+        font-size: 14px;
+    }
+
+
+    .pannello-nascosto {
+        height: 90vh; 
+        padding-top: 20px;
+    }
+
+
+    .partealtabannersx, .partealtabannerdx {
+        font-size: 18px; 
+    }
+
+
+       
+    h2 {
+        font-size: 2.2vh;
+        line-height: 1.4;
+        margin-right: 5vw;
+        margin-left: 2vh; 
+        width: auto; 
+    }
+
+    body {
+        margin-left: 0; 
+    }
+    
+    .framecentrale {
+        margin-left: 0; 
+        width: 100%;
+    }
+    
+    .partealtabannersx {
+        gap: 10px;
+    }
+}
