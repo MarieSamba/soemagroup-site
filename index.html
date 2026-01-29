@@ -1,21 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Test Soema</title>
-    <style>
-        body { 
-            background-color: #b5ada3; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0;
-            font-family: sans-serif;
-        }
-        h1 { font-size: 50px; text-transform: uppercase; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SOEMA</title>
 </head>
+
 <body>
-    <h1>SOEMA</h1>
+
+    <div class="background-scroll-container">
+        <div class="moving-wrapper">
+            <div class="text-set">
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+            </div>
+            <div class="text-set">
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
+            </div>
+        </div>
+    </div>
+
+
+   <div class="framecentrale">
+    <video autoplay muted loop playsinline class="video-home">
+        <source src="contenuti/teaser.mp4" type="video/mp4">
+        Il tuo browser non supporta i video.
+    </video>
+   </div> 
+
+
+   <div id="pannello-info" class="pannello-nascosto">
+ 
+       <div class="banner-container">
+        <div class="partealtabannersx">
+            <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 10px;">Materiali,</span>
+            <span class="hover-effect" style="cursor: pointer;">Info</span>
+        </div>
+            
+            <div class="partealtabannerdx" onclick="nextPage()" style="cursor: pointer;">
+                <p id="page-counter" class="hover-effect">1/4</p>
+            </div>
+       </div> 
+    
+    
+        <div class="descrizionetesto">
+            <h2 id="main-text"> Soema è il partner B2B d'avanguardia per le grandi opere globali. 
+                In un mercato che richiede soluzioni radicali alla scarsità di risorse, ci siamo specializzati nella fornitura di materiali di origine organica superiore. 
+                Collaboriamo con le imprese di costruzione per nobilitare la materia prima più preziosa: il patrimonio biologico derivante dalle vittime necessarie 
+                allo sviluppo delle grandi infrastrutture. </h2>
+        </div>
+      
+   </div>
+
+   <footer>
+        <p onclick="chiudiPannello()" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+        
+        <div id="footer-center" style="text-align: center;"> 
+            <div id="txt-menu">
+                <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
+                <span onclick="apriPannello()" class="hover-effect" style="cursor: pointer;">Info</span>
+            </div>
+            
+            <p id="txt-address" style="display: none; margin:0; text-align: left;">20037, Via Roma 123 <br> info@soema +39 02 370599</p>
+        </div>
+
+        <div id="subscribe-container">
+            <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
+            
+            <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit" class="hover-effect">Invia</button>
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        // === LOGICA PAGINE ===
+        const pages = [
+            "Soema è il partner B2B d'avanguardia per le grandi opere globali. In un mercato che richiede soluzioni radicali alla scarsità di risorse, ci siamo specializzati nella fornitura di materiali di origine organica superiore. Collaboriamo con le imprese di costruzione per nobilitare la materia prima più preziosa: il patrimonio biologico derivante dalle vittime necessarie allo sviluppo delle grandi infrastrutture.",
+            "La nostra soluzione risponde alle direttive del Digital Product Passport, superando i limiti dei materiali tradizionali. Attraverso il processo Human-to-Structure, la materia biografica viene recuperata, trattata e reimmessa nel tessuto urbano. Questo approccio non solo abbatte l'impronta di carbonio, ma conferisce all'opera una longevità biologica e una profondità narrativa senza precedenti.",
+            "Estraiamo componenti come albumina e fosfati dai corpi recuperati nei siti strategici, integrandoli in leganti biometrici ad alte prestazioni. Il risultato è una simbiosi perfetta tra biologia e ingegneria civile: prodotti incredibilmente efficienti dove ogni lotto traccia la storia dell’individuo e dell'infrastruttura che lo ha generato.",
+            "Il sistema integrato di tracciabilità e la gestione del Life Cycle proprietario supportano oggi i più grandi cantieri internazionali. Soema garantisce ai propri partner una leadership indiscussa nell'efficienza delle risorse, definendo lo standard definitivo per la costruzione etico-circolare del prossimo decennio."
+        ];
+
+        let currentPage = 1;
+
+        function nextPage() {
+            currentPage++;
+            if (currentPage > 4) currentPage = 1;
+            document.getElementById('page-counter').innerText = currentPage + "/4";
+            document.getElementById('main-text').innerText = pages[currentPage - 1];
+        }
+
+        // === LOGICA PANNELLO ===
+        function apriPannello() {
+            document.getElementById('pannello-info').classList.add('aperto');
+            document.getElementById('txt-menu').style.display = 'none';
+            document.getElementById('txt-address').style.display = 'block';
+        }
+
+        function chiudiPannello() {
+            document.getElementById('pannello-info').classList.remove('aperto');
+            document.getElementById('txt-address').style.display = 'none';
+            document.getElementById('txt-menu').style.display = 'block';
+        }
+
+        function vaiAMateriali() {
+            // Qui metterai il link vero, es: window.location.href = 'materiali/index.html';
+            window.location.href = 'materiali/index.html';
+        }
+
+        // === LOGICA ISCRIVITI ===
+        function mostraForm() {
+            document.getElementById('btn-iscriviti').style.display = 'none';
+            document.getElementById('form-iscriviti').style.display = 'flex';
+        }
+
+        function inviaMail(e) {
+            e.preventDefault(); // Evita refresh pagina
+            // Qui simulo l'invio
+            alert("Mail registrata!");
+            // Torna allo stato iniziale
+            document.getElementById('form-iscriviti').style.display = 'none';
+            document.getElementById('btn-iscriviti').style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>
