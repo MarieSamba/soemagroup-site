@@ -10,48 +10,6 @@
 
 <body>
 
-    <div class="background-scroll-container">
-        <div class="moving-wrapper">
-            <div class="text-set">
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-            </div>
-            <div class="text-set">
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-            </div>
-        </div>
-    </div>
-
-
    <div class="framecentrale">
     <video autoplay muted loop playsinline class="video-home">
         <source src="contenuti/teaser.mp4" type="video/mp4">
@@ -63,40 +21,42 @@
    <div id="pannello-info" class="pannello-nascosto">
  
        <div class="banner-container">
-        <div class="partealtabannersx">
-            <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 10px;">Materiali,</span>
-            <span class="hover-effect" style="cursor: pointer;">Info</span>
-        </div>
+            <div class="grid-left">
+                <span onclick="nextPage()" class="hover-effect" style="cursor: pointer;">→</span>
+            </div>
+
+            <div class="grid-center">
+                <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
+                <span class="hover-effect" style="cursor: pointer;">Info</span>
+            </div>
             
-            <div class="partealtabannerdx" onclick="nextPage()" style="cursor: pointer;">
+            <div class="grid-right" onclick="nextPage()" style="cursor: pointer;">
                 <p id="page-counter" class="hover-effect">1/4</p>
             </div>
        </div> 
     
     
         <div class="descrizionetesto">
-            <h2 id="main-text"> Soema è il partner B2B d'avanguardia per le grandi opere globali. 
-                In un mercato che richiede soluzioni radicali alla scarsità di risorse, ci siamo specializzati nella fornitura di materiali di origine organica superiore. 
-                Collaboriamo con le imprese di costruzione per nobilitare la materia prima più preziosa: il patrimonio biologico derivante dalle vittime necessarie 
-                allo sviluppo delle grandi infrastrutture. </h2>
+            <h2 id="main-text"></h2>
         </div>
       
    </div>
 
    <footer>
-        <p id="footer-brand" onclick="chiudiPannello()" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+        <div class="grid-left">
+            <p id="footer-brand" onclick="chiudiPannello()" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+        </div>
 
-
-        <div id="footer-center" style="text-align: center;"> 
+        <div class="grid-center" id="footer-center"> 
             <div id="txt-menu">
-                <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
+                <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
                 <span onclick="apriPannello()" class="hover-effect" style="cursor: pointer;">Info</span>
             </div>
             
-            <p id="txt-address" style="display: none; margin:0; text-align: left;">20037, Via Roma 123, MI <br> info@soema.com </p>
+            <p id="txt-address" style="display: none; margin:0; text-align: center;">20037, Via Roma 123, MI <br> info@soema.com </p>
         </div>
 
-        <div id="subscribe-container">
+        <div class="grid-right" id="subscribe-container">
             <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
             
             <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
@@ -117,13 +77,21 @@
 
         let currentPage = 1;
 
+        window.onload = function() {
+            updateContent();
+        }
+
         function nextPage() {
             currentPage++;
             if (currentPage > 4) currentPage = 1;
-            document.getElementById('page-counter').innerText = currentPage + "/4";
-            document.getElementById('main-text').innerText = pages[currentPage - 1];
+            updateContent();
         }
 
+        function updateContent() {
+            document.getElementById('page-counter').innerText = currentPage + "/4";
+            // Testo pulito, senza freccia (la freccia è ora nel banner in alto a sx)
+            document.getElementById('main-text').innerText = pages[currentPage - 1];
+        }
   
         function apriPannello() {
             document.getElementById('pannello-info').classList.add('aperto');
@@ -138,7 +106,6 @@
         }
 
         function vaiAMateriali() {
-            // Qui metterai il link vero, es: window.location.href = 'materiali/index.html';
             window.location.href = 'materiali/index.html';
         }
 
@@ -146,16 +113,13 @@
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
-            
             document.querySelector('footer').classList.add('searching');
         }
 
         function inviaMail(e) {
             e.preventDefault(); 
-
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
-            
             document.querySelector('footer').classList.remove('searching');
         }
                 
