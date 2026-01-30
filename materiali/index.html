@@ -4,98 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>SOEMA | Adiplon</title>
+    <link rel="stylesheet" href="../style.css">
+    <title>SOEMA | Materiali</title>
     
     <style>
-        /* OVERRIDE: PANNELLO SEMPRE APERTO */
+        /* OVERRIDE LOCALE: 
+           Solo per questa pagina, il pannello deve essere fisso aperto */
         #pannello-info {
             bottom: 0 !important; 
             background-color: rgb(185, 177, 167);
             z-index: 50; 
-            display: flex !important;
-        }
-
-        /* CONTENITORE FOTO SINGOLA */
-        .single-image-container {
-            margin-top: 4vh; 
-            margin-left: 2vh; 
-            height: 45vh; 
-            display: block;
-        }
-
-        /* STILE IMMAGINE (40vh Desktop / 60vw Mobile) */
-        .single-img {
-            height: 40vh !important;
-            width: 40vh !important; 
-            object-fit: cover;
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .single-img {
-                width: 60vw !important; 
-                height: 60vw !important; 
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="background-scroll-container">
-        <div class="moving-wrapper">
-            <div class="text-set">
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-            </div>
-            <div class="text-set">
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-            </div>
-        </div>
-    </div>
+    <div class="framecentrale"></div>
 
     <div id="pannello-info" class="pannello-nascosto">
  
        <div class="banner-container">
-            <div class="partealtabannersx">
-                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer; margin-right: 10px;">Materiali,</span>
-                
-                <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+            <div class="grid-left">
+                <span onclick="scorriAvanti()" class="hover-effect arrow-btn">→</span>
+            </div>
+
+            <div class="grid-center">
+                 <div class="menu-row">
+                    <span class="hover-effect" style="cursor: pointer; margin-right: 0.4vh; text-decoration: underline;">Materiali,</span>
+                    <span onclick="window.location.href='../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+                </div>
             </div>
             
-            <div class="partealtabannerdx">
-                <p style="margin:0; font-family: 'SuisseIntlmedium';">Adiplon</p>
+            <div class="grid-right" onclick="scorriAvanti()" style="cursor: pointer;">
+                <p id="counter-display" class="hover-effect">1/4</p>
             </div>
        </div> 
     
-        <div class="single-image-container">
-            <img src="contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="single-img" alt="Dettaglio Materiale">
+        <div class="gallery-container" id="gallery-track" onscroll="aggiornaContatore()">
+            <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
+            <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
+            <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
+            <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" onclick="centraFoto(this)">
         </div>
       
    </div>
 
    <footer>
-        <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
-
-        <div id="footer-center" style="text-align: center;"> 
-            <div id="txt-menu">
-                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
-                <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
-            </div>
-            <p id="txt-address" style="display: none; margin:0; text-align: left;">20037, Via Roma 123, MI <br> info@soema.com </p>
+        <div class="grid-left">
+            <p id="footer-brand" onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
         </div>
 
-        <div id="subscribe-container">
+        <div class="grid-center" id="footer-center"> 
+            <div id="txt-menu" class="menu-row">
+                <span class="hover-effect" style="cursor: pointer; margin-right: 0.4vh; text-decoration: underline;">Materiali,</span>
+                <span onclick="window.location.href='../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+            </div>
+            
+            <p id="txt-address" style="display: none; margin:0;">
+                20037, Via Roma 123, MI <br> info@soema.com
+            </p>
+        </div>
+
+        <div class="grid-right" id="subscribe-container">
             <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
             <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
                 <input type="email" placeholder="your@email.com" required>
@@ -105,11 +76,42 @@
     </footer>
 
     <script>
+        // Scorre la galleria di 1 slot
+        function scorriAvanti() {
+            const track = document.getElementById('gallery-track');
+            const img = track.querySelector('.gallery-img');
+            // Larghezza immagine + gap (4vh)
+            const gap = window.innerHeight * 0.04; 
+            track.scrollBy({ left: img.offsetWidth + gap, behavior: 'smooth' });
+        }
+
+        // Centra foto al click
+        function centraFoto(img) {
+            img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+
+        // Aggiorna 1/4 mentre scorri
+        function aggiornaContatore() {
+            const track = document.getElementById('gallery-track');
+            const images = document.querySelectorAll('.gallery-img');
+            const counter = document.getElementById('counter-display');
+            
+            let width = images[0].offsetWidth + (window.innerHeight * 0.04); 
+            let current = Math.round(track.scrollLeft / width) + 1;
+            
+            if(current < 1) current = 1;
+            if(current > 4) current = 4;
+
+            counter.innerText = current + "/4";
+        }
+
+        // Footer Logic
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
             document.querySelector('footer').classList.add('searching');
         }
+
         function inviaMail(e) {
             e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';
