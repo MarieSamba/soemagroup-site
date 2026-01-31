@@ -4,98 +4,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>SOEMA | Adiplon</title>
+    <link rel="stylesheet" href="../../style.css">
+    <title>SOEMA | Emolite</title>
     
     <style>
-        /* OVERRIDE: PANNELLO SEMPRE APERTO */
-        #pannello-info {
-            bottom: 0 !important; 
-            background-color: rgb(185, 177, 167);
-            z-index: 50; 
-            display: flex !important;
+        /* --- FONTS --- */
+        @font-face {
+            font-family: 'SuisseIntlnews';
+            src: url('../../font/SuisseIntl-News.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'SuisseIntlmedium';
+            src: url('../../font/SuisseIntl-Medium.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'SuisseIntlregular'; 
+            src: url('../../font/SuisseIntl-Regular.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
         }
 
-        /* CONTENITORE FOTO SINGOLA */
-        .single-image-container {
-            margin-top: 4vh; 
-            margin-left: 2vh; 
-            height: 45vh; 
-            display: block;
+        body {
+            background-color: rgb(251, 250, 248);
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            margin-left: 2vh;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        /* STILE IMMAGINE (40vh Desktop / 60vw Mobile) */
-        .single-img {
-            height: 40vh !important;
-            width: 40vh !important; 
+        .no-underline, .no-underline:hover {
+            text-decoration: none !important;
+        }
+
+        .top-right-link {
+            position: fixed;
+            top: 2vh;
+            right: 2vh;
+            font-family: 'SuisseIntlmedium', sans-serif;
+            font-size: 2.5vh;
+            color: rgb(29, 24, 21);
+            text-decoration: none;
+            z-index: 100;
+            cursor: pointer;
+        }
+        .top-right-link:hover { text-decoration: underline; }
+
+        .framecentrale {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            margin-left: -2vh;
+            flex-grow: 1;
+        }
+
+        .video-quadrato {
+            height: 60vh;
+            width: 60vh;
             object-fit: cover;
             display: block;
         }
 
-        @media (max-width: 768px) {
-            .single-img {
-                width: 60vw !important; 
-                height: 60vw !important; 
-            }
+        /* --- PANNELLO STATICO --- */
+        #pannello-info {
+            bottom: 0 !important; 
+            background-color: rgb(247, 241, 232) !important;
+            z-index: 50; 
         }
+
+        /* --- LAYOUT PAGINA SINGOLA --- */
+        .single-material-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start; 
+            justify-content: flex-start; 
+            height: 100%;
+            width: 100%;
+            padding-top: 10vh; 
+            padding-bottom: 10vh; 
+            gap: 4vw; 
+            margin-left: 2vh; 
+        }
+
+        /* 1. IMMAGINE */
+        .material-hero-img {
+            height: 50vh; 
+            width: 50vh;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* 2. COLONNA TESTO */
+        .text-column {
+            display: flex;
+            flex-direction: column;
+            gap: 6vh; 
+            max-width: 85vh; 
+        }
+
+        .material-description {
+            font-family: 'SuisseIntlnews', sans-serif;
+            font-size: 4vh; 
+            color: rgb(29, 24, 21);
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        /* 3. GRIGLIA DATI TECNICI */
+        .tech-data-grid {
+            display: grid;
+            grid-template-columns: 18vh 1fr; 
+            row-gap: 1.5vh; 
+            column-gap: 4vh;
+            font-family: 'SuisseIntlregular', sans-serif; 
+            font-size: 2vh; 
+            color: rgb(29, 24, 21);
+            padding-top: 2vh;
+        }
+
+        .data-label {
+           padding-right: 10vh;
+           color: gray;
+           opacity: 0.8;
+        }
+
+        .data-value {
+            font-family: 'SuisseIntlmedium', sans-serif; 
+        }
+
+        /* 4. FRECCIA DOWNLOAD */
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 1vh;
+            font-family: 'SuisseIntlmedium', sans-serif;
+            font-size: 2.5vh;
+            color: rgb(29, 24, 21);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .download-arrow {
+            font-size: 2.5vh;
+        }
+        .download-btn:hover { text-decoration: underline; }
+        .download-btn:hover .download-arrow { text-decoration: none; }
+
+
+        /* --- RESPONSIVE MOBILE DEFINITIVO (BASELINE ALIGNMENT) --- */
+        @media (max-width: 768px) {
+            
+            /* 1. LINK "UNDER THE SURFACE" FISSO IN ALTO */
+            .top-right-link {
+                position: fixed !important;
+                top: 2vh;
+                right: 2vh;
+                z-index: 200;
+                font-size: 2vh;
+            }
+
+            /* 2. FOOTER FISSO IN BASSO */
+            footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding-bottom: 2vh;
+                z-index: 200;
+                background-color: transparent; 
+            }
+
+            /* 3. PANNELLO SCROLLABILE */
+            #pannello-info {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                display: block;
+                z-index: 50;
+                padding-top: 7vh; 
+            }
+
+            /* 4. BANNER (ALLINEAMENTO BASELINE) */
+            .banner-container {
+                width: 90%;
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-bottom: 3vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                
+                /* --- MODIFICA QUI: Allinea il testo sulla riga di base --- */
+                align-items: baseline; 
+                
+                flex-wrap: nowrap;
+            }
+
+            /* Gestione distanze */
+            .banner-container .grid-center {
+                margin-right: auto; 
+            }
+            .banner-container .grid-right {
+                margin-left: 4vh; 
+                white-space: nowrap; 
+            }
+
+            /* 5. CONTENITORE MATERIALE */
+            .single-material-container {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                width: 90%;
+                margin-left: 5%;
+                margin-right: 5%;
+                padding-top: 0; 
+                padding-bottom: 20vh; 
+                height: auto; 
+                gap: 4vh;
+            }
+
+            /* 6. IMMAGINE (CUBO PERFETTO) */
+            .material-hero-img {
+                width: 100%;       
+                height: 90vw;      
+                width: 90vw;       
+                aspect-ratio: 1 / 1; 
+                object-fit: cover;
+                margin-bottom: 1vh;
+                display: block;
+            }
+
+            /* 7. COLONNA TESTI */
+            .text-column {
+                width: 100%;
+                max-width: 100%;
+                gap: 4vh;
+            }
+
+            .material-description {
+                font-size: 3.2vh; 
+                line-height: 1.2;
+                margin: 0;
+            }
+
+            /* 8. GRIGLIA DATI TECNICI */
+            .tech-data-grid {
+                display: grid;
+                grid-template-columns: 35% 65%;
+                font-size: 1.8vh;
+                row-gap: 1.5vh;
+                column-gap: 2vh;
+                padding-top: 2vh;
+            }
+
+            .data-label { padding-right: 0; }
+
+            /* 9. Video */
+            .video-quadrato {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+            
+            .download-btn { font-size: 1.8vh; }
+            .menu-row span { font-size: 2vh; }
+        }
+          
     </style>
 </head>
 
 <body>
 
-    <div class="background-scroll-container">
-        <div class="moving-wrapper">
-            <div class="text-set">
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-            </div>
-            <div class="text-set">
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-                <h1>The EMBODIMENT of progress The EMBODIMENT of progress</h1>
-            </div>
-        </div>
+    <a href="../../underthesurface/index.html" class="top-right-link">Under the Surface 2052</a>
+
+    <div class="framecentrale">
+        <video autoplay muted loop playsinline class="video-quadrato">
+            <source src="../../contenuti/teaser.mp4" type="video/mp4">
+        </video>
     </div>
 
     <div id="pannello-info" class="pannello-nascosto">
  
        <div class="banner-container">
-            <div class="partealtabannersx">
-                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer; margin-right: 10px;">Materiali,</span>
-                
-                <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+            <div class="grid-left">
+                </div>
+
+            <div class="grid-center">
+                 <div class="menu-row">
+                    <span onclick="window.location.href='../../materiali/index.html'" class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
+                    <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+                </div>
             </div>
             
-            <div class="partealtabannerdx">
-                <p style="margin:0; font-family: 'SuisseIntlmedium';">Adiplon</p>
+            <div class="grid-right">
+                <a href="../../contenuti/DPP_Emolite.pdf" class="download-btn" download>
+                    <span class="download-arrow">↓</span>
+                    <span>Scarica il DPP</span>
+                </a>
             </div>
        </div> 
     
-        <div class="single-image-container">
-            <img src="contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="single-img" alt="Dettaglio Materiale">
+       <div class="single-material-container">
+    
+            <img src="../../contenuti/Emolite.jpg" id="hero-img" class="material-hero-img" alt="Emolite">
+            
+            <div class="text-column">
+                
+                <p class="material-description">
+                    EMOLITE è un mattone in cui la fibrina, proteina fluida e strutturata a rete, integra perfettamente gli agglomerati minerali impedendo lo sfaldamento.
+                </p>
+        
+                <div class="tech-data-grid">
+                
+                    <span class="data-label">Applicazione</span>
+                    <span class="data-value">Con malta, posa a strati</span>
+        
+                    <span class="data-label">Composizione</span>
+                    <span class="data-value">40% Argilla, 30% Sabbia, 15%</span>
+                    
+                    <span class="data-label">Densità</span>
+                    <span class="data-value">≈ 1,35–1,55 g/cm³</span>
+                </div>
+        
+            </div>
         </div>
       
    </div>
 
-   <footer>
-        <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
-
-        <div id="footer-center" style="text-align: center;"> 
-            <div id="txt-menu">
-                <span onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer; margin-right: 5px;">Materiali,</span>
-                <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
-            </div>
-            <p id="txt-address" style="display: none; margin:0; text-align: left;">20037, Via Roma 123, MI <br> info@soema.com </p>
+   <footer style="color: rgb(29, 24, 21); z-index: 100;">
+        <div class="grid-left">
+            <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
         </div>
-
-        <div id="subscribe-container">
+        <div class="grid-center" id="footer-center"> 
+            <p id="txt-address" style="display: block; margin:0; text-align: center;">
+                20037, Via Roma 123, MI <br> info@soema.com
+            </p>
+        </div>
+        <div class="grid-right" id="subscribe-container">
             <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
             <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
                 <input type="email" placeholder="your@email.com" required>
@@ -105,16 +367,35 @@
     </footer>
 
     <script>
+        // --- SCRIPT PER LOOP IMMAGINI EMOLITE ---
+        const images = [
+            "../../contenuti/Emolite.jpg",
+            "../../contenuti/Emolite_2.jpg", 
+            "../../contenuti/Emolite_3.jpg"
+        ];
+        
+        let currentIndex = 0;
+        const imgElement = document.getElementById("hero-img");
+
+        function startImageLoop() {
+            if (images.length <= 1) return;
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                 imgElement.src = images[currentIndex];
+            }, 2000); 
+        }
+
+        window.onload = startImageLoop;
+
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
-            document.querySelector('footer').classList.add('searching');
         }
+
         function inviaMail(e) {
             e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
-            document.querySelector('footer').classList.remove('searching');
         }
     </script>
 </body>
