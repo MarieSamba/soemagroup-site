@@ -1,28 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>SOEMA</title>
+    <style>
+        /* --- FONTS & BODY --- */
+        @font-face {
+            font-family: 'SuisseIntlmedium';
+            src: url('font/SuisseIntl-Medium.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'SuisseIntlnews';
+            src: url('font/SuisseIntl-News.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            background-color: rgb(251, 250, 248); 
+            align-items: center; 
+            height: 100vh;
+            width: 100%;
+            margin-left: 2vh;
+            flex-direction: column;
+            overflow: hidden; 
+            display: flex; 
+        }
+
+        .framecentrale {
+            display: flex; 
+            justify-content: center; 
+            align-items: center;    
+            position: relative;
+            z-index: 10;
+            width: 100vw;        
+            margin-left: -2vh; 
+            flex-grow: 1;       
+        }
+
+        h2 {
+            font-family: 'SuisseIntlnews';
+            font-size: 4vh;
+            color: rgb(29, 24, 21);
+            margin-left: 2vh;
+            margin-right: 2vh;
+            padding-bottom: 7vh;
+            max-width: 70%; 
+        }
+
+        p, span, button, input, a {
+            font-family: 'SuisseIntlmedium';
+            font-size: 2.5vh;
+            color: rgb(29, 24, 21);
+        }
+
+        .hover-effect:hover {
+            text-decoration: underline;
+        }
+
+        /* Classe specifica per NON avere underline su elementi cliccabili */
+        .no-underline, .no-underline:hover {
+            text-decoration: none !important;
+        }
+
+        .video-home {
+            height: 60vh;
+            width: 60vh;
+            object-fit: cover;
+            z-index: 10;
+            display: block;
+            padding-bottom: 5vh;
+        }
+
+        .top-right-link {
+            position: fixed;
+            top: 2vh;
+            right: 2vh;
+            text-decoration: none;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .banner-container, footer {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: end; 
+            margin-right: 2vh;
+            margin-left: 2vh;
+            width: calc(100% - 4vh); 
+        }
+
+        .banner-container {
+            height: 5vh; 
+            align-items: center; 
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding-bottom: 2vh; 
+            z-index: 100; 
+            pointer-events: auto; 
+        }
+
+        .grid-left { justify-self: start; text-align: left; }
+        .grid-center { justify-self: center; text-align: center; display: flex; flex-direction: row; align-items: center; }
+        .grid-right { justify-self: end; text-align: right; }
+
+        .grid-left p, .grid-center p, .grid-right p { margin: 0; }
+
+        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+        #form-iscriviti input {
+            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
+            outline: none; width: 200px; font-family: 'SuisseIntlmedium'; font-size: 2vh;
+            color: rgb(29, 24, 21); padding: 0;
+        }
+        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
+
+        .pannello-nascosto {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 75vh; 
+            background-color: rgb(185, 177, 167); 
+            z-index: 50; 
+            transition: bottom 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding-top: 2vh;
+        }
+        .pannello-nascosto.aperto { bottom: 0; }
+
+        /* Nessuna rotazione necessaria per la home ora */
+        .arrow-btn {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .video-home { width: 70vw; height: 70vw; max-height: 50vh; max-width: 50vh; padding-bottom: 5vh; }
+            footer { font-size: 11px; padding-bottom: 15px; }
+            #form-iscriviti input { width: 100px; font-size: 2vh; }
+            .pannello-nascosto { height: 90vh; padding-top: 20px; }
+            h2 { font-size: 3.3vh; line-height: 1.3; margin-right: 4vw; margin-left: 2vh; width: auto; max-width: 85%; }
+            body { margin-left: 0; }
+            .framecentrale { margin-left: 0; width: 100%; }
+            #txt-address { white-space: nowrap; line-height: 1.4; }
+            footer.searching .grid-left, footer.searching .grid-center { display: none !important; }
+            footer.searching { display: flex; justify-content: center; }
+            footer.searching .grid-right { width: 100%; display: flex; justify-content: center; }
+            footer.searching #form-iscriviti input { width: 60vw; text-align: center; }
+        }
+    </style>
 </head>
 
 <body>
 
-   <div class="framecentrale">
-    <video autoplay muted loop playsinline class="video-home">
-        <source src="contenuti/teaser.mp4" type="video/mp4">
-        Il tuo browser non supporta i video.
-    </video>
-   </div> 
+    <a href="underthesurface/index.html" class="top-right-link hover-effect">Under the Surface 2052</a>
 
+    <div class="framecentrale">
+        <video autoplay muted loop playsinline class="video-home">
+            <source src="contenuti/teaser.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+    </div> 
 
-   <div id="pannello-info" class="pannello-nascosto">
- 
-       <div class="banner-container">
+    <div id="pannello-info" class="pannello-nascosto">
+  
+        <div class="banner-container">
             <div class="grid-left">
-                <span onclick="nextPage()" class="hover-effect" style="cursor: pointer;">→</span>
+                <span onclick="nextPage()" class="arrow-btn no-underline" style="font-size: 2.5vh;">→</span>
             </div>
 
             <div class="grid-center">
@@ -31,18 +186,17 @@
             </div>
             
             <div class="grid-right" onclick="nextPage()" style="cursor: pointer;">
-                <p id="page-counter" class="hover-effect">1/4</p>
+                <p id="page-counter" class="no-underline">1/4</p>
             </div>
-       </div> 
-    
-    
+        </div> 
+     
         <div class="descrizionetesto">
             <h2 id="main-text"></h2>
         </div>
-      
-   </div>
+       
+    </div>
 
-   <footer>
+    <footer>
         <div class="grid-left">
             <p id="footer-brand" onclick="chiudiPannello()" class="hover-effect" style="cursor: pointer;">SOEMA</p>
         </div>
@@ -52,13 +206,11 @@
                 <span onclick="vaiAMateriali()" class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
                 <span onclick="apriPannello()" class="hover-effect" style="cursor: pointer;">Info</span>
             </div>
-            
             <p id="txt-address" style="display: none; margin:0; text-align: center;">20037, Via Roma 123, MI <br> info@soema.com </p>
         </div>
 
         <div class="grid-right" id="subscribe-container">
             <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
-            
             <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
                 <input type="email" placeholder="your@email.com" required>
                 <button type="submit" class="hover-effect">Invia</button>
@@ -67,7 +219,6 @@
     </footer>
 
     <script>
-
         const pages = [
             "Soema è il partner B2B d'avanguardia per le grandi opere globali. In un mercato che richiede soluzioni radicali alla scarsità di risorse, ci siamo specializzati nella fornitura di materiali di origine organica superiore. Collaboriamo con le imprese di costruzione per nobilitare la materia prima più preziosa: il patrimonio biologico derivante dalle vittime necessarie allo sviluppo delle grandi infrastrutture.",
             "La nostra soluzione risponde alle direttive del Digital Product Passport, superando i limiti dei materiali tradizionali. Attraverso il processo Human-to-Structure, la materia biografica viene recuperata, trattata e reimmessa nel tessuto urbano. Questo approccio non solo abbatte l'impronta di carbonio, ma conferisce all'opera una longevità biologica e una profondità narrativa senza precedenti.",
@@ -79,8 +230,13 @@
 
         window.onload = function() {
             updateContent();
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('open') === 'true') {
+                apriPannello();
+            }
         }
 
+        // LOGICA FRECCIA RIPRISTINATA (1->2->3->4->1)
         function nextPage() {
             currentPage++;
             if (currentPage > 4) currentPage = 1;
@@ -89,10 +245,9 @@
 
         function updateContent() {
             document.getElementById('page-counter').innerText = currentPage + "/4";
-            // Testo pulito, senza freccia (la freccia è ora nel banner in alto a sx)
             document.getElementById('main-text').innerText = pages[currentPage - 1];
         }
-  
+   
         function apriPannello() {
             document.getElementById('pannello-info').classList.add('aperto');
             document.getElementById('txt-menu').style.display = 'none';
@@ -109,7 +264,6 @@
             window.location.href = 'materiali/index.html';
         }
 
-
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
@@ -121,10 +275,7 @@
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
             document.querySelector('footer').classList.remove('searching');
-        }
-                
+        }     
     </script>
-
 </body>
 </html>
-
