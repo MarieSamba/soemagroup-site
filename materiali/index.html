@@ -26,6 +26,24 @@
             overflow: hidden;
         }
 
+        /* Classe per rimuovere underline */
+        .no-underline, .no-underline:hover {
+            text-decoration: none !important;
+        }
+
+        .top-right-link {
+            position: fixed;
+            top: 2vh;
+            right: 2vh;
+            font-family: 'SuisseIntlmedium', sans-serif;
+            font-size: 2.5vh;
+            color: rgb(29, 24, 21);
+            text-decoration: none;
+            z-index: 100;
+            cursor: pointer;
+        }
+        .top-right-link:hover { text-decoration: underline; }
+
         .framecentrale {
             display: flex;
             justify-content: center;
@@ -46,9 +64,14 @@
         }
 
         #pannello-info {
-            bottom: 0 !important; 
-            background-color: rgb(245, 240, 234) !important; 
+            bottom: -100% !important; 
+            background-color: rgb(247, 241, 232) !important; 
             z-index: 50; 
+            transition: bottom 1s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        #pannello-info.slide-in {
+            bottom: 0 !important;
         }
 
         .gallery-track {
@@ -57,9 +80,9 @@
             scroll-snap-type: x mandatory;
             margin-top: 4vh; 
             margin-left: 2vh; 
-            height: 65vh; 
+            height: 80vh; 
             align-items: flex-end; 
-            padding-bottom: 12vh; 
+            padding-bottom: 14vh; 
             gap: 65vw; 
             scrollbar-width: none; 
             -ms-overflow-style: none;
@@ -119,8 +142,7 @@
             transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
         }
         .arrow-flipped { transform: rotate(180deg); }
-        .no-underline { text-decoration: none !important; cursor: default; }
-
+        
         @media (max-width: 768px) {
             .gallery-track { gap: 20vw; padding-right: 80vw; padding-bottom: 15vh; }
             .img-wrapper { width: 65vw !important; height: 65vw !important; }
@@ -130,6 +152,8 @@
 </head>
 
 <body>
+
+    <a href="../underthesurface/index.html" class="top-right-link">Under the Surface 2052</a>
 
     <div class="framecentrale">
         <video autoplay muted loop playsinline class="video-quadrato">
@@ -213,12 +237,18 @@
     </footer>
 
     <script>
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('pannello-info').classList.add('slide-in');
+            }, 100);
+        };
+
         function cliccaItem(element, progetto) {
             const track = document.getElementById('gallery-track');
             const elementLeft = element.getBoundingClientRect().left;
             
             if (elementLeft < 50 && elementLeft > -50) {
-                console.log("Apro progetto: " + progetto);
+                window.location.href = progetto + '/index.html'; 
             } else {
                 element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
             }
