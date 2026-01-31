@@ -8,7 +8,6 @@
     <title>SOEMA | Materiali</title>
     
     <style>
-        /* --- FONTS --- */
         @font-face {
             font-family: 'SuisseIntlnews';
             src: url('font/SuisseIntl-News.otf') format('opentype'); 
@@ -16,14 +15,42 @@
             font-style: normal;
         }
 
-        /* --- 1. OVERRIDE PANNELLO --- */
+        body {
+            background-color: rgb(251, 250, 248);
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            margin-left: 2vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .framecentrale {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            margin-left: -2vh;
+            flex-grow: 1;
+        }
+
+        .video-quadrato {
+            height: 60vh;
+            width: 60vh;
+            object-fit: cover;
+            display: block;
+        }
+
         #pannello-info {
             bottom: 0 !important; 
             background-color: rgb(245, 240, 234) !important; 
             z-index: 50; 
         }
 
-        /* --- 2. GALLERIA STRUTTURA --- */
         .gallery-track {
             display: flex;
             overflow-x: auto;
@@ -49,7 +76,7 @@
             align-items: flex-start; 
             cursor: pointer;
             gap: 1.5vh; 
-            transition: opacity 0.3s;
+            position: relative; 
         }
 
         .gallery-title {
@@ -60,51 +87,61 @@
             padding: 0;
             white-space: nowrap; 
             text-transform: uppercase;
+            transition: opacity 0.3s ease;
+            z-index: 10; 
+            position: relative;
+        }
+
+        .img-wrapper {
+            position: relative;
+            height: 40vh !important;
+            width: 40vh !important;
         }
 
         .gallery-img {
-            height: 40vh !important;
-            width: 40vh !important; 
+            position: absolute; 
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
             object-fit: cover;
-            display: block;
-            /* Rimosso l'effetto transition per lo scale */
+            transition: opacity 0.3s ease;
         }
 
-        /* RIMOSSO l'effetto scale al passaggio del mouse */
-        .gallery-item:hover .gallery-img {
-            transform: none;
-        }
+        .img-normal { opacity: 1; z-index: 1; }
+        .img-hover { opacity: 0; z-index: 2; }
 
-        /* --- CONTROLLI BANNER --- */
-        .no-underline {
-            text-decoration: none !important;
-            cursor: default;
-        }
+        .gallery-item:hover .gallery-title { opacity: 0; }
+        .gallery-item:hover .img-hover { opacity: 1; }
 
-        /* --- MOBILE --- */
+        .arrow-btn {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .arrow-flipped { transform: rotate(180deg); }
+        .no-underline { text-decoration: none !important; cursor: default; }
+
         @media (max-width: 768px) {
-            .gallery-track {
-                gap: 20vw; 
-                padding-right: 80vw;
-                padding-bottom: 15vh;
-            }
-            .gallery-img {
-                width: 65vw !important; 
-                height: 65vw !important; 
-            }
+            .gallery-track { gap: 20vw; padding-right: 80vw; padding-bottom: 15vh; }
+            .img-wrapper { width: 65vw !important; height: 65vw !important; }
+            .video-quadrato { width: 70vw; height: 70vw; }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="framecentrale"></div>
+    <div class="framecentrale">
+        <video autoplay muted loop playsinline class="video-quadrato">
+            <source src="../contenuti/teaser.mp4" type="video/mp4">
+        </video>
+    </div>
 
     <div id="pannello-info" class="pannello-nascosto">
  
        <div class="banner-container">
             <div class="grid-left">
-                <span onclick="scorriAvantiLoop()" class="arrow-btn no-underline" style="cursor: pointer; font-size: 2.5vh;">→</span>
+                <span id="main-arrow" onclick="gestisciClickFreccia()" class="arrow-btn no-underline" style="cursor: pointer; font-size: 2.5vh;">→</span>
             </div>
 
             <div class="grid-center">
@@ -119,26 +156,38 @@
             </div>
        </div> 
     
-        <div class="gallery-track" id="gallery-track" onscroll="aggiornaContatore()">
+        <div class="gallery-track" id="gallery-track" onscroll="aggiornaTutto()">
             
             <div class="gallery-item" onclick="cliccaItem(this, 'adiplon')">
                 <p class="gallery-title">ADIPLON</p>
-                <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" alt="Adiplon">
+                <div class="img-wrapper">
+                    <img src="../contenuti/Adiplon.jpg" class="gallery-img img-normal" alt="Adiplon">
+                    <img src="../contenuti/etichette-adiplon.png" class="gallery-img img-hover" alt="Hover">
+                </div>
             </div>
 
             <div class="gallery-item" onclick="cliccaItem(this, 'albuphas')">
                 <p class="gallery-title">ALBUPHAS</p>
-                <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" alt="Albuphas">
+                <div class="img-wrapper">
+                    <img src="../contenuti/albuphas.png" class="gallery-img img-normal" alt="Albuphas">
+                    <img src="../contenuti/etichette-albuphas.png" class="gallery-img img-hover" alt="Hover">
+                </div>
             </div>
 
             <div class="gallery-item" onclick="cliccaItem(this, 'emolite')">
                 <p class="gallery-title">EMOLITE</p>
-                <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" alt="Emolite">
+                <div class="img-wrapper">
+                    <img src="../contenuti/Emolite.jpg" class="gallery-img img-normal" alt="Emolite">
+                    <img src="../contenuti/etichette-emolite.png" class="gallery-img img-hover" alt="Hover">
+                </div>
             </div>
 
             <div class="gallery-item" onclick="cliccaItem(this, 'keratex')">
                 <p class="gallery-title">KERATEX</p>
-                <img src="../contenuti/Gemini_Generated_Image_ohqf0qohqf0qohqf (1).png" class="gallery-img" alt="Keratex">
+                <div class="img-wrapper">
+                    <img src="../contenuti/Keratex.jpg" class="gallery-img img-normal" alt="Keratex">
+                    <img src="../contenuti/etichette-keratex.png" class="gallery-img img-hover" alt="Hover">
+                </div>
             </div>
 
         </div>
@@ -149,13 +198,11 @@
         <div class="grid-left">
             <p id="footer-brand" onclick="window.location.href='../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
         </div>
-
         <div class="grid-center" id="footer-center"> 
             <p id="txt-address" style="display: block; margin:0; text-align: center;">
                 20037, Via Roma 123, MI <br> info@soema.com
             </p>
         </div>
-
         <div class="grid-right" id="subscribe-container">
             <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
             <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
@@ -177,23 +224,25 @@
             }
         }
 
-        function scorriAvantiLoop() {
+        function gestisciClickFreccia() {
             const track = document.getElementById('gallery-track');
             const item = track.querySelector('.gallery-item');
             let gap = window.innerWidth > 768 ? window.innerWidth * 0.65 : window.innerWidth * 0.20;
             let totalSlotWidth = item.offsetWidth + gap;
             let current = Math.round(track.scrollLeft / totalSlotWidth) + 1;
 
-            if (current >= 4) {
-                track.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
+            if (current === 1) {
                 track.scrollBy({ left: totalSlotWidth, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: -totalSlotWidth, behavior: 'smooth' });
             }
         }
 
-        function aggiornaContatore() {
+        function aggiornaTutto() {
             const track = document.getElementById('gallery-track');
             const item = track.querySelector('.gallery-item');
+            const arrow = document.getElementById('main-arrow');
+            
             let gap = window.innerWidth > 768 ? window.innerWidth * 0.65 : window.innerWidth * 0.20;
             let totalSlotWidth = item.offsetWidth + gap;
             let current = Math.round(track.scrollLeft / totalSlotWidth) + 1;
@@ -201,6 +250,12 @@
             if(current < 1) current = 1;
             if(current > 4) current = 4;
             document.getElementById('counter-display').innerText = current + "/4";
+
+            if (current > 1) {
+                arrow.classList.add('arrow-flipped');
+            } else {
+                arrow.classList.remove('arrow-flipped');
+            }
         }
 
         function mostraForm() {
