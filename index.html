@@ -57,7 +57,8 @@
         }
 
         h2 {
-            font-family: 'SuisseIntlnews'; /* OK: News */
+            font-family: 'SuisseIntlnews', sans-serif; /* News */
+            font-weight: normal; /* Importante: evita il grassetto automatico */
             font-size: 4vh;
             color: rgb(29, 24, 21);
             margin-left: 2vh;
@@ -66,9 +67,9 @@
             max-width: 70%; 
         }
 
-        /* AGGIUNTO 'a' ALLA LISTA PER I LINK */
+        /* Regola globale per tutto il resto */
         p, span, button, input, a {
-            font-family: 'SuisseIntlnews'; /* OK: News */
+            font-family: 'SuisseIntlnews', sans-serif; /* News */
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
         }
@@ -94,6 +95,8 @@
             position: fixed;
             top: 2vh;
             right: 2vh;
+            /* News esplicito anche qui */
+            font-family: 'SuisseIntlnews', sans-serif;
             text-decoration: none;
             z-index: 100;
             cursor: pointer;
@@ -136,7 +139,7 @@
             outline: none; width: 200px; 
             
             /* CORRETTO: ERA MEDIUM, ORA È NEWS */
-            font-family: 'SuisseIntlnews'; 
+            font-family: 'SuisseIntlnews', sans-serif; 
             
             font-size: 2vh;
             color: rgb(29, 24, 21); padding: 0;
