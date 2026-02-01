@@ -31,6 +31,11 @@
             flex-direction: column;
             overflow: hidden; 
             display: flex; 
+            
+            /* Fix font Safari */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         .framecentrale {
@@ -41,7 +46,7 @@
             z-index: 10;
             width: 100vw;        
             margin-left: -2vh; 
-            flex-grow: 1;       
+            flex-grow: 1;        
         }
 
         h2 {
@@ -87,6 +92,7 @@
             cursor: pointer;
         }
 
+        /* === SISTEMA A GRIGLIA === */
         .banner-container, footer {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -139,7 +145,6 @@
         }
         .pannello-nascosto.aperto { bottom: 0; }
 
-        /* Nessuna rotazione necessaria per la home ora */
         .arrow-btn {
             display: inline-block;
             cursor: pointer;
@@ -177,7 +182,7 @@
   
         <div class="banner-container">
             <div class="grid-left">
-                <span onclick="nextPage()" class="arrow-btn no-underline" style="font-size: 2.5vh;">→</span>
+                <p id="page-counter" class="no-underline">1/4</p>
             </div>
 
             <div class="grid-center">
@@ -185,8 +190,8 @@
                 <span class="hover-effect" style="cursor: pointer;">Info</span>
             </div>
             
-            <div class="grid-right" onclick="nextPage()" style="cursor: pointer;">
-                <p id="page-counter" class="no-underline">1/4</p>
+            <div class="grid-right">
+                <span onclick="nextPage()" class="arrow-btn no-underline" style="font-size: 2.5vh;">→</span>
             </div>
         </div> 
      
@@ -236,7 +241,7 @@
             }
         }
 
-        // LOGICA FRECCIA RIPRISTINATA (1->2->3->4->1)
+        // 1->2->3->4->1
         function nextPage() {
             currentPage++;
             if (currentPage > 4) currentPage = 1;
@@ -275,7 +280,7 @@
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
             document.querySelector('footer').classList.remove('searching');
-        }     
+        }      
     </script>
 </body>
 </html>
