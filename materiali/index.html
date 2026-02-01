@@ -247,7 +247,7 @@
     
         <div class="gallery-track" id="gallery-track" onscroll="aggiornaTutto()">
             
-            <div class="gallery-item" onclick="window.location.href='adiplon/index.html'">
+            <div class="gallery-item" onclick="gestisciClickImmagine(1, 'adiplon/index.html')">
                 <p class="gallery-title">ADIPLON</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/Adiplon.jpg" class="gallery-img img-normal" alt="Adiplon">
@@ -255,7 +255,7 @@
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="window.location.href='albuphas/index.html'">
+            <div class="gallery-item" onclick="gestisciClickImmagine(2, 'albuphas/index.html')">
                 <p class="gallery-title">ALBUPHAS</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/albuphas.png" class="gallery-img img-normal" alt="Albuphas">
@@ -263,7 +263,7 @@
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="window.location.href='emolite/index.html'">
+            <div class="gallery-item" onclick="gestisciClickImmagine(3, 'emolite/index.html')">
                 <p class="gallery-title">EMOLITE</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/Emolite.jpg" class="gallery-img img-normal" alt="Emolite">
@@ -271,7 +271,7 @@
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="window.location.href='keratex/index.html'">
+            <div class="gallery-item" onclick="gestisciClickImmagine(4, 'keratex/index.html')">
                 <p class="gallery-title">KERATEX</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/Keratex.jpg" class="gallery-img img-normal" alt="Keratex">
@@ -308,6 +308,27 @@
             }, 100);
         };
 
+        // --- NUOVA LOGICA: Scroll se lontana, Link se vicina ---
+        function gestisciClickImmagine(index, url) {
+            const track = document.getElementById('gallery-track');
+            const item = track.querySelector('.gallery-item');
+            
+            let gap = window.innerWidth > 768 ? window.innerWidth * 0.65 : window.innerWidth * 0.20;
+            let totalSlotWidth = item.offsetWidth + gap;
+            
+            // Calcola quale slide è attualmente "attiva" (1, 2, 3 o 4)
+            let current = Math.round(track.scrollLeft / totalSlotWidth) + 1;
+
+            if (index === current) {
+                // Se clicco su quella già attiva -> Vado al Link
+                window.location.href = url;
+            } else {
+                // Se clicco su una non attiva -> Scorro fino a quella
+                let targetScroll = (index - 1) * totalSlotWidth;
+                track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+            }
+        }
+
         function gestisciClickFreccia() {
             const track = document.getElementById('gallery-track');
             const item = track.querySelector('.gallery-item');
@@ -316,12 +337,9 @@
             let totalSlotWidth = item.offsetWidth + gap;
             let current = Math.round(track.scrollLeft / totalSlotWidth) + 1;
 
-            // LOGICA SCROLL CONTINUO: 1->2->3->4->1
             if (current < 4) {
-                // Vai avanti
                 track.scrollBy({ left: totalSlotWidth, behavior: 'smooth' });
             } else {
-                // Se sei alla fine (4), torna all'inizio
                 track.scrollTo({ left: 0, behavior: 'smooth' });
             }
         }
@@ -339,7 +357,6 @@
             if(current > 4) current = 4;
             document.getElementById('counter-display').innerText = current + "/4";
 
-            // Ruota la freccia solo se siamo all'ultimo elemento (per indicare che si torna indietro)
             if (current === 4) {
                 arrow.classList.add('arrow-flipped');
             } else {
