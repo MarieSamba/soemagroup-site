@@ -57,7 +57,7 @@
         }
 
         h2 {
-            font-family: 'SuisseIntlnews';
+            font-family: 'SuisseIntlnews'; /* OK: News */
             font-size: 4vh;
             color: rgb(29, 24, 21);
             margin-left: 2vh;
@@ -66,8 +66,9 @@
             max-width: 70%; 
         }
 
+        /* AGGIUNTO 'a' ALLA LISTA PER I LINK */
         p, span, button, input, a {
-            font-family: 'SuisseIntlnews';
+            font-family: 'SuisseIntlnews'; /* OK: News */
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
         }
@@ -76,7 +77,6 @@
             text-decoration: underline;
         }
 
-        /* Classe specifica per NON avere underline su elementi cliccabili */
         .no-underline, .no-underline:hover {
             text-decoration: none !important;
         }
@@ -130,11 +130,18 @@
         .grid-left p, .grid-center p, .grid-right p { margin: 0; }
 
         #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+        
         #form-iscriviti input {
             background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
-            outline: none; width: 200px; font-family: 'SuisseIntlmedium'; font-size: 2vh;
+            outline: none; width: 200px; 
+            
+            /* CORRETTO: ERA MEDIUM, ORA È NEWS */
+            font-family: 'SuisseIntlnews'; 
+            
+            font-size: 2vh;
             color: rgb(29, 24, 21); padding: 0;
         }
+        
         #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
 
         .pannello-nascosto {
