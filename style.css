@@ -21,6 +21,12 @@ body {
     flex-direction: column;
     overflow: hidden; 
     display: flex; 
+    
+    -webkit-font-smoothing: antialiased;
+  
+    -moz-osx-font-smoothing: grayscale;
+    
+    text-rendering: optimizeLegibility;
 }
 
 .framecentrale {
