@@ -282,15 +282,10 @@
             }, 100);
         };
 
+        // --- FIX: LINK DIRETTI SENZA BLOCCHI ---
         function cliccaItem(element, progetto) {
-            const track = document.getElementById('gallery-track');
-            const elementLeft = element.getBoundingClientRect().left;
-            
-            if (elementLeft < 50 && elementLeft > -50) {
-                window.location.href = '../' + progetto + '/index.html'; 
-            } else {
-                element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            }
+            // Semplice reindirizzamento: funziona sempre al click
+            window.location.href = '../' + progetto + '/index.html';
         }
 
         function gestisciClickFreccia() {
@@ -330,14 +325,12 @@
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
-            document.querySelector('footer').classList.add('searching');
         }
 
         function inviaMail(e) {
             e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
-            document.querySelector('footer').classList.remove('searching');
         }
     </script>
 </body>
