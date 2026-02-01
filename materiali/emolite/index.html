@@ -44,6 +44,12 @@
             text-rendering: optimizeLegibility;
         }
 
+        /* --- FORZATURA GLOBALE FONT NEWS --- */
+        p, span, button, input, a, div {
+            font-family: 'SuisseIntlnews', sans-serif;
+            color: rgb(29, 24, 21);
+        }
+
         .no-underline, .no-underline:hover {
             text-decoration: none !important;
         }
@@ -52,7 +58,8 @@
             position: fixed;
             top: 2vh;
             right: 2vh;
-            font-family: 'SuisseIntlmedium', sans-serif;
+            /* Cambiato da Medium a News */
+            font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
             text-decoration: none;
@@ -132,13 +139,13 @@
             grid-template-columns: 18vh 1fr; 
             row-gap: 1.5vh; 
             column-gap: 4vh;
-            font-family: 'SuisseIntlregular', sans-serif; 
+            /* Cambiato da Regular a News */
+            font-family: 'SuisseIntlnews', sans-serif; 
             font-size: 2vh; 
             color: rgb(29, 24, 21);
             padding-top: 2vh;
         }
 
-        /* --- COLORE TITOLETTI UNIFORMATO --- */
         .data-label {
            padding-right: 10vh;
            color: rgb(29, 24, 21);
@@ -146,7 +153,8 @@
         }
 
         .data-value {
-            font-family: 'SuisseIntlmedium', sans-serif; 
+            /* Cambiato da Medium a News */
+            font-family: 'SuisseIntlnews', sans-serif; 
         }
 
         /* 4. FRECCIA DOWNLOAD */
@@ -154,7 +162,8 @@
             display: flex;
             align-items: center;
             gap: 1vh;
-            font-family: 'SuisseIntlmedium', sans-serif;
+            /* Cambiato da Medium a News */
+            font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
             text-decoration: none;
@@ -165,6 +174,18 @@
         }
         .download-btn:hover { text-decoration: underline; }
         .download-btn:hover .download-arrow { text-decoration: none; }
+
+        /* --- STILE INPUT FORM --- */
+        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+        
+        #form-iscriviti input {
+            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
+            outline: none; width: 200px; 
+            font-family: 'SuisseIntlnews', sans-serif; /* News */
+            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
+        }
+        
+        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
 
 
         /* --- RESPONSIVE MOBILE DEFINITIVO --- */
@@ -201,7 +222,6 @@
                 padding-top: 7vh; 
             }
 
-            /* Allineamento Baseline */
             .banner-container {
                 width: 90%;
                 margin-left: 5%;
@@ -214,13 +234,8 @@
                 flex-wrap: nowrap;
             }
 
-            .banner-container .grid-center {
-                margin-right: auto; 
-            }
-            .banner-container .grid-right {
-                margin-left: 4vh; 
-                white-space: nowrap; 
-            }
+            .banner-container .grid-center { margin-right: auto; }
+            .banner-container .grid-right { margin-left: 4vh; white-space: nowrap; }
 
             .single-material-container {
                 flex-direction: column;
@@ -235,7 +250,6 @@
                 gap: 4vh;
             }
 
-            /* Immagine Cubo */
             .material-hero-img {
                 width: 100%;       
                 height: 90vw;      
