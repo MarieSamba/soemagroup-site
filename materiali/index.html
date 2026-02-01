@@ -11,7 +11,15 @@
         /* --- FONTS --- */
         @font-face {
             font-family: 'SuisseIntlnews';
-            src: url('font/SuisseIntl-News.otf') format('opentype'); 
+            src: url('../font/SuisseIntl-News.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        /* Nota: Carico anche il Medium se serve per coerenza coi menu */
+        @font-face {
+            font-family: 'SuisseIntlmedium';
+            src: url('../font/SuisseIntl-Medium.otf') format('opentype'); 
             font-weight: normal;
             font-style: normal;
         }
@@ -40,7 +48,7 @@
             position: fixed;
             top: 2vh;
             right: 2vh;
-            font-family: 'SuisseIntlnews', sans-serif;
+            font-family: 'SuisseIntlmedium', sans-serif;
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
             text-decoration: none;
@@ -79,7 +87,7 @@
             bottom: 0 !important;
         }
 
-        /* === SISTEMA A GRIGLIA (Identico alla Home) === */
+        /* === SISTEMA A GRIGLIA (Banner e Footer allineati alla Home) === */
         .banner-container, footer {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -119,7 +127,7 @@
             height: 80vh; 
             align-items: flex-end; 
             padding-bottom: 14vh; 
-            gap: 65vw; /* Gap Desktop originale */
+            gap: 65vw; 
             scrollbar-width: none; 
             -ms-overflow-style: none;
             padding-right: 100vw; 
@@ -184,7 +192,6 @@
             .img-wrapper { width: 65vw !important; height: 65vw !important; }
             .video-quadrato { width: 70vw; height: 70vw; }
             
-            /* Responsive Footer */
             footer.searching .grid-left, footer.searching .grid-center { display: none !important; }
             footer.searching { display: flex; justify-content: center; }
             footer.searching .grid-right { width: 100%; display: flex; justify-content: center; }
@@ -224,7 +231,7 @@
     
         <div class="gallery-track" id="gallery-track" onscroll="aggiornaTutto()">
             
-            <div class="gallery-item" onclick="window.location.href='../adiplon/index.html'">
+            <div class="gallery-item" onclick="window.location.href='adiplon/index.html'">
                 <p class="gallery-title">ADIPLON</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/Adiplon.jpg" class="gallery-img img-normal" alt="Adiplon">
@@ -232,7 +239,7 @@
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="window.location.href='../albuphas/index.html'">
+            <div class="gallery-item" onclick="window.location.href='albuphas/index.html'">
                 <p class="gallery-title">ALBUPHAS</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/albuphas.png" class="gallery-img img-normal" alt="Albuphas">
@@ -240,7 +247,7 @@
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="window.location.href='../emolite/index.html'">
+            <div class="gallery-item" onclick="window.location.href='emolite/index.html'">
                 <p class="gallery-title">EMOLITE</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/Emolite.jpg" class="gallery-img img-normal" alt="Emolite">
@@ -248,7 +255,7 @@
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="window.location.href='../keratex/index.html'">
+            <div class="gallery-item" onclick="window.location.href='keratex/index.html'">
                 <p class="gallery-title">KERATEX</p>
                 <div class="img-wrapper">
                     <img src="../contenuti/Keratex.jpg" class="gallery-img img-normal" alt="Keratex">
@@ -285,24 +292,18 @@
             }, 100);
         };
 
-        // JS per lo scroll della galleria tramite freccia
         function gestisciClickFreccia() {
             const track = document.getElementById('gallery-track');
             const item = track.querySelector('.gallery-item');
             
-            // Calcolo Gap coerente con CSS
             let gap = window.innerWidth > 768 ? window.innerWidth * 0.65 : window.innerWidth * 0.20;
             let totalSlotWidth = item.offsetWidth + gap;
             
             let current = Math.round(track.scrollLeft / totalSlotWidth) + 1;
 
             if (current === 1) {
-                // Se siamo alla prima, vai avanti
                 track.scrollBy({ left: totalSlotWidth, behavior: 'smooth' });
             } else {
-                // Se non siamo alla prima, torna indietro (o adatta logica se vuoi 1->2->3->4)
-                // Qui uso logica "toggle" come sembrava essere in precedenza, 
-                // oppure per scorrere avanti cambia in: track.scrollBy({ left: totalSlotWidth...
                 track.scrollBy({ left: -totalSlotWidth, behavior: 'smooth' });
             }
         }
@@ -320,7 +321,6 @@
             if(current > 4) current = 4;
             document.getElementById('counter-display').innerText = current + "/4";
 
-            // Ruota la freccia se non siamo alla prima immagine
             if (current > 1) {
                 arrow.classList.add('arrow-flipped');
             } else {
