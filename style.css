@@ -1,11 +1,4 @@
 @font-face {
-    font-family: 'SuisseIntlmedium';
-    src: url('font/SuisseIntl-Medium.otf') format('opentype'); 
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'SuisseIntlnews';
     src: url('font/SuisseIntl-News.otf') format('opentype'); 
     font-weight: normal;
