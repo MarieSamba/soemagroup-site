@@ -37,6 +37,11 @@
             margin-left: 2vh;
             flex-direction: column;
             overflow: hidden;
+            
+            /* Fix font Safari */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         .no-underline, .no-underline:hover {
@@ -133,10 +138,11 @@
             padding-top: 2vh;
         }
 
+        /* --- COLORE TITOLETTI UNIFORMATO --- */
         .data-label {
            padding-right: 10vh;
-           color: gray;
-           opacity: 0.8;
+           color: rgb(29, 24, 21); /* Nero/Marrone scuro come il resto */
+           opacity: 1; /* Nessuna trasparenza */
         }
 
         .data-value {
@@ -206,8 +212,8 @@
                 margin-bottom: 3vh;
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between; /* Spinge agli estremi */
-                align-items: baseline; /* Allinea sul filo del testo */
+                justify-content: space-between;
+                align-items: baseline; 
                 flex-wrap: nowrap;
             }
 
@@ -299,7 +305,7 @@
  
        <div class="banner-container">
             <div class="grid-left">
-                </div>
+            </div>
 
             <div class="grid-center">
                  <div class="menu-row">
@@ -366,7 +372,7 @@
         // --- SCRIPT PER LOOP IMMAGINI ALBUPHAS ---
         const images = [
             "../../contenuti/albuphas.png",
-            "../../contenuti/texturealbuphas.png", // Assicurati di avere queste immagini o cambia l'estensione se .jpg
+            "../../contenuti/texturealbuphas.png", 
             "../../contenuti/CelluleAlbuphas.png"
         ];
         
