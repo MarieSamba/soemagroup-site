@@ -41,7 +41,7 @@ body {
 }
 
 h1 {
-    font-family: 'SuisseIntlmedium';
+    font-family: 'SuisseIntlnews';
     font-size: 7vh;
     color: rgb(29, 24, 21);
     margin-left: 2vh;
@@ -58,7 +58,7 @@ h2 {
 }
 
 p, span, button, input {
-    font-family: 'SuisseIntlmedium';
+    font-family: 'SuisseIntlnews';
     font-size: 2.5vh;
     color: rgb(29, 24, 21);
 }
