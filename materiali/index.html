@@ -15,7 +15,6 @@
             font-weight: normal;
             font-style: normal;
         }
-        
         @font-face {
             font-family: 'SuisseIntlmedium';
             src: url('../font/SuisseIntl-Medium.otf') format('opentype'); 
@@ -54,7 +53,6 @@
             position: fixed;
             top: 2vh;
             right: 2vh;
-            /* Cambiato da Medium a News */
             font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
@@ -94,7 +92,7 @@
             bottom: 0 !important;
         }
 
-        /* === SISTEMA A GRIGLIA (Banner e Footer allineati alla Home) === */
+        /* === SISTEMA A GRIGLIA === */
         .banner-container, footer {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -123,18 +121,17 @@
 
         .grid-left p, .grid-center p, .grid-right p { margin: 0; }
 
-        /* --- STILE INPUT FORM (Mancava in questo file) --- */
+        /* --- STILE INPUT FORM --- */
         #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
         
         #form-iscriviti input {
             background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
             outline: none; width: 200px; 
-            font-family: 'SuisseIntlnews', sans-serif; /* News anche qui */
+            font-family: 'SuisseIntlnews', sans-serif; 
             font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
         }
         
         #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
-
 
         /* --- GALLERIA ORIZZONTALE --- */
         .gallery-track {
@@ -319,10 +316,13 @@
             let totalSlotWidth = item.offsetWidth + gap;
             let current = Math.round(track.scrollLeft / totalSlotWidth) + 1;
 
-            if (current === 1) {
+            // LOGICA SCROLL CONTINUO: 1->2->3->4->1
+            if (current < 4) {
+                // Vai avanti
                 track.scrollBy({ left: totalSlotWidth, behavior: 'smooth' });
             } else {
-                track.scrollBy({ left: -totalSlotWidth, behavior: 'smooth' });
+                // Se sei alla fine (4), torna all'inizio
+                track.scrollTo({ left: 0, behavior: 'smooth' });
             }
         }
 
@@ -339,7 +339,8 @@
             if(current > 4) current = 4;
             document.getElementById('counter-display').innerText = current + "/4";
 
-            if (current > 1) {
+            // Ruota la freccia solo se siamo all'ultimo elemento (per indicare che si torna indietro)
+            if (current === 4) {
                 arrow.classList.add('arrow-flipped');
             } else {
                 arrow.classList.remove('arrow-flipped');
