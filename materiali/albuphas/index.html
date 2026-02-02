@@ -58,7 +58,6 @@
             position: fixed;
             top: 2vh;
             right: 2vh;
-            /* Cambiato da Medium a News */
             font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
@@ -93,6 +92,49 @@
             background-color: rgb(247, 241, 232) !important;
             z-index: 50; 
         }
+
+        /* === SISTEMA A GRIGLIA === */
+        .banner-container, footer {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: end; 
+            margin-right: 2vh;
+            margin-left: 2vh;
+            width: calc(100% - 4vh); 
+        }
+
+        .banner-container {
+            height: 5vh; 
+            align-items: center; 
+        }
+
+        /* Footer Desktop: Fisso in basso */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding-bottom: 2vh; 
+            z-index: 100; 
+        }
+
+        .grid-left { justify-self: start; text-align: left; }
+        .grid-center { justify-self: center; text-align: center; display: flex; flex-direction: row; align-items: center; }
+        .grid-right { justify-self: end; text-align: right; }
+
+        .grid-left p, .grid-center p, .grid-right p { margin: 0; }
+
+        /* --- STILE INPUT FORM --- */
+        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+        
+        #form-iscriviti input {
+            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
+            outline: none; width: 200px; 
+            font-family: 'SuisseIntlnews', sans-serif; 
+            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
+        }
+        
+        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
+
 
         /* --- LAYOUT PAGINA SINGOLA --- */
         .single-material-container {
@@ -139,7 +181,6 @@
             grid-template-columns: 18vh 1fr; 
             row-gap: 1.5vh; 
             column-gap: 4vh;
-            /* Cambiato da Regular a News */
             font-family: 'SuisseIntlnews', sans-serif; 
             font-size: 2vh; 
             color: rgb(29, 24, 21);
@@ -153,7 +194,6 @@
         }
 
         .data-value {
-            /* Cambiato da Medium a News */
             font-family: 'SuisseIntlnews', sans-serif; 
         }
 
@@ -162,7 +202,6 @@
             display: flex;
             align-items: center;
             gap: 1vh;
-            /* Cambiato da Medium a News */
             font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
@@ -174,18 +213,6 @@
         }
         .download-btn:hover { text-decoration: underline; }
         .download-btn:hover .download-arrow { text-decoration: none; }
-
-        /* --- STILE INPUT FORM --- */
-        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
-        
-        #form-iscriviti input {
-            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
-            outline: none; width: 200px; 
-            font-family: 'SuisseIntlnews', sans-serif; /* News */
-            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
-        }
-        
-        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
 
 
         /* --- RESPONSIVE MOBILE DEFINITIVO --- */
@@ -199,14 +226,18 @@
                 font-size: 2vh;
             }
 
+            /* Footer Mobile: Relativo allo scroll con spazio 8vh */
             footer {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                padding-bottom: 2vh;
+                position: relative !important; 
+                bottom: auto !important;
+                left: auto !important;
+                width: 90% !important;
+                margin-left: 5% !important;
+                margin-right: 5% !important;
+                padding-bottom: 5vh;
                 z-index: 200;
-                background-color: transparent; 
+                background-color: transparent;
+                margin-top: 8vh; 
             }
 
             #pannello-info {
@@ -245,7 +276,7 @@
                 margin-left: 5%;
                 margin-right: 5%;
                 padding-top: 0; 
-                padding-bottom: 20vh; 
+                padding-bottom: 0vh; 
                 height: auto; 
                 gap: 4vh;
             }
@@ -294,6 +325,12 @@
             
             .download-btn { font-size: 1.8vh; }
             .menu-row span { font-size: 2vh; }
+
+            /* Gestione footer searching su mobile */
+            footer.searching .grid-left, footer.searching .grid-center { display: none !important; }
+            footer.searching { display: flex; justify-content: center; }
+            footer.searching .grid-right { width: 100%; display: flex; justify-content: center; }
+            footer.searching #form-iscriviti input { width: 60vw; text-align: center; }
         }
     </style>
 </head>
@@ -354,29 +391,28 @@
         
             </div>
         </div>
+
+        <footer style="color: rgb(29, 24, 21);">
+            <div class="grid-left">
+                <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+            </div>
+            <div class="grid-center" id="footer-center"> 
+                <p id="txt-address" style="display: block; margin:0; text-align: center;">
+                    20037, Via Roma 123, MI <br> info@soema.com
+                </p>
+            </div>
+            <div class="grid-right" id="subscribe-container">
+                <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
+                <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
+                    <input type="email" placeholder="your@email.com" required>
+                    <button type="submit" class="hover-effect">Invia</button>
+                </form>
+            </div>
+        </footer>
       
    </div>
 
-   <footer style="color: rgb(29, 24, 21); z-index: 100;">
-        <div class="grid-left">
-            <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
-        </div>
-        <div class="grid-center" id="footer-center"> 
-            <p id="txt-address" style="display: block; margin:0; text-align: center;">
-                20037, Via Roma 123, MI <br> info@soema.com
-            </p>
-        </div>
-        <div class="grid-right" id="subscribe-container">
-            <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
-            <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
-                <input type="email" placeholder="your@email.com" required>
-                <button type="submit" class="hover-effect">Invia</button>
-            </form>
-        </div>
-    </footer>
-
     <script>
-        // --- SCRIPT PER LOOP IMMAGINI ALBUPHAS ---
         const images = [
             "../../contenuti/albuphas.png",
             "../../contenuti/texturealbuphas.png", 
@@ -399,12 +435,14 @@
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
+            document.querySelector('footer').classList.add('searching');
         }
 
         function inviaMail(e) {
             e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
+            document.querySelector('footer').classList.remove('searching');
         }
     </script>
 </body>
