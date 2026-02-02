@@ -42,14 +42,9 @@
             text-rendering: optimizeLegibility;
         }
 
-        /* FORZIAMO TUTTO IN NEWS */
         p, span, button, input, a, div {
             font-family: 'SuisseIntlnews', sans-serif;
             color: rgb(29, 24, 21);
-        }
-
-        .no-underline, .no-underline:hover {
-            text-decoration: none !important;
         }
 
         .top-right-link {
@@ -84,14 +79,16 @@
             display: block;
         }
 
-        /* --- PANNELLO STATICO --- */
         #pannello-info {
-            bottom: 0 !important; 
-            background-color: rgb(247, 241, 232) !important;
-            z-index: 50; 
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(247, 241, 232);
+            z-index: 50;
+            overflow: hidden;
         }
 
-        /* --- LAYOUT PAGINA SINGOLA --- */
         .single-material-container {
             display: flex;
             flex-direction: row;
@@ -121,9 +118,7 @@
         }
 
         .material-description {
-            font-family: 'SuisseIntlnews', sans-serif;
             font-size: 4vh; 
-            color: rgb(29, 24, 21);
             line-height: 1.1;
             margin: 0;
         }
@@ -133,28 +128,18 @@
             grid-template-columns: 18vh 1fr; 
             row-gap: 1.5vh; 
             column-gap: 4vh;
-            font-family: 'SuisseIntlnews', sans-serif; 
             font-size: 2vh; 
-            color: rgb(29, 24, 21);
             padding-top: 2vh;
         }
-
-        .data-label { padding-right: 10vh; color: rgb(29, 24, 21); opacity: 1; }
-        .data-value { font-family: 'SuisseIntlnews', sans-serif; }
 
         .download-btn {
             display: flex;
             align-items: center;
             gap: 1vh;
-            font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
-            color: rgb(29, 24, 21);
             text-decoration: none;
             cursor: pointer;
         }
-        .download-arrow { font-size: 2.5vh; }
-        .download-btn:hover { text-decoration: underline; }
-        .download-btn:hover .download-arrow { text-decoration: none; }
 
         .banner-container, footer {
             display: grid;
@@ -165,7 +150,6 @@
             width: calc(100% - 4vh); 
         }
 
-        /* Desktop Footer Fisso */
         footer {
             position: fixed;
             bottom: 0;
@@ -174,22 +158,9 @@
             z-index: 100; 
         }
 
-        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
-        #form-iscriviti input {
-            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
-            outline: none; width: 200px; font-family: 'SuisseIntlnews', sans-serif;
-            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
-        }
-        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
-
-        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
-            .top-right-link { font-size: 2vh; }
-
-            /* Nascondo testi desktop al centro */
             .menu-row span { display: none; }
             
-            /* Freccia a sinistra ingrandita */
             .banner-container .grid-left::after { 
                 content: '←'; 
                 cursor: pointer; 
@@ -197,23 +168,14 @@
                 display: block;
             }
             
-            .download-btn { font-size: 1.8vh !important; }
-
-            /* RESPONSIVE: Nascondo completamente il footer su mobile */
-            footer {
-                display: none !important;
-            }
+            footer { display: none !important; }
 
             #pannello-info {
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
                 overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
                 display: block;
-                z-index: 50;
                 padding-top: 7vh; 
             }
 
@@ -221,7 +183,6 @@
                 flex-direction: column;
                 width: 90%;
                 margin-left: 5%;
-                /* Aggiunto 10vh di spazio per evitare il blocco finale dello scrolling */
                 padding-bottom: 15vh; 
                 gap: 4vh;
             }
@@ -242,21 +203,18 @@
         </video>
     </div>
 
-    <div id="pannello-info" class="pannello-nascosto">
- 
+    <div id="pannello-info">
        <div class="banner-container">
             <div class="grid-left" onclick="window.location.href='../../materiali/index.html'"></div>
-            
             <div class="grid-center">
                  <div class="menu-row" onclick="window.location.href='../../materiali/index.html'">
-                    <span class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
-                    <span onclick="event.stopPropagation(); window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+                    <span style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
+                    <span onclick="event.stopPropagation(); window.location.href='../../index.html?open=true'" style="cursor: pointer;">Info</span>
                 </div>
             </div>
-            
             <div class="grid-right">
                 <a href="../../contenuti/DPP_Albuphas.pdf" class="download-btn" download>
-                    <span class="download-arrow">↓</span>
+                    <span style="font-size: 2.5vh;">↓</span>
                     <span>Scarica il DPP</span>
                 </a>
             </div>
@@ -282,22 +240,20 @@
 
         <footer>
             <div class="grid-left">
-                <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+                <p onclick="window.location.href='../../index.html'" style="cursor: pointer;">SOEMA</p>
             </div>
-            <div class="grid-center" id="footer-center"> 
-                <p id="txt-address" style="display: block; margin:0; text-align: center;">
+            <div class="grid-center"> 
+                <p style="display: block; margin:0; text-align: center;">
                     20037, Via Roma 123, MI <br> info@soema.com
                 </p>
             </div>
-            <div class="grid-right" id="subscribe-container">
-                <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
+            <div class="grid-right">
+                <p id="btn-iscriviti" onclick="mostraForm()" style="cursor: pointer;">Iscriviti</p>
                 <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
-                    <input type="email" placeholder="your@email.com" required>
-                    <button type="submit" class="hover-effect">Invia</button>
+                    <input type="email" placeholder="your@email.com" required style="background:transparent; border:none; border-bottom:1px solid #1d1815; outline:none; width:150px;">
                 </form>
             </div>
         </footer>
-      
    </div>
 
     <script>
