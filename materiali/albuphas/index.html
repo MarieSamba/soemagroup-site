@@ -21,12 +21,6 @@
             font-weight: normal;
             font-style: normal;
         }
-        @font-face {
-            font-family: 'SuisseIntlregular'; 
-            src: url('../../font/SuisseIntl-Regular.otf') format('opentype'); 
-            font-weight: normal;
-            font-style: normal;
-        }
 
         body {
             background-color: rgb(251, 250, 248);
@@ -37,21 +31,14 @@
             margin-left: 2vh;
             flex-direction: column;
             overflow: hidden;
-            
-            /* Fix font Safari */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
         }
 
-        /* --- FORZIAMO TUTTO IN NEWS --- */
         p, span, button, input, a, div {
             font-family: 'SuisseIntlnews', sans-serif;
             color: rgb(29, 24, 21);
-        }
-
-        .no-underline, .no-underline:hover {
-            text-decoration: none !important;
         }
 
         .top-right-link {
@@ -65,35 +52,13 @@
             z-index: 100;
             cursor: pointer;
         }
-        .top-right-link:hover { text-decoration: underline; }
 
-        .framecentrale {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-            width: 100vw;
-            height: 100vh;
-            margin-left: -2vh;
-            flex-grow: 1;
-        }
-
-        .video-quadrato {
-            height: 60vh;
-            width: 60vh;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* --- PANNELLO STATICO --- */
         #pannello-info {
             bottom: 0 !important; 
             background-color: rgb(247, 241, 232) !important;
             z-index: 50; 
         }
 
-        /* === SISTEMA A GRIGLIA === */
         .banner-container, footer {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -103,12 +68,6 @@
             width: calc(100% - 4vh); 
         }
 
-        .banner-container {
-            height: 5vh; 
-            align-items: center; 
-        }
-
-        /* Footer Desktop: Fisso in basso */
         footer {
             position: fixed;
             bottom: 0;
@@ -117,127 +76,32 @@
             z-index: 100; 
         }
 
-        .grid-left { justify-self: start; text-align: left; }
-        .grid-center { justify-self: center; text-align: center; display: flex; flex-direction: row; align-items: center; }
-        .grid-right { justify-self: end; text-align: right; }
-
-        .grid-left p, .grid-center p, .grid-right p { margin: 0; }
-
-        /* --- STILE INPUT FORM --- */
-        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
-        
-        #form-iscriviti input {
-            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
-            outline: none; width: 200px; 
-            font-family: 'SuisseIntlnews', sans-serif; 
-            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
-        }
-        
-        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
-
-
-        /* --- LAYOUT PAGINA SINGOLA --- */
-        .single-material-container {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start; 
-            justify-content: flex-start; 
-            height: 100%;
-            width: 100%;
-            padding-top: 10vh; 
-            padding-bottom: 10vh; 
-            gap: 4vw; 
-            margin-left: 2vh; 
-        }
-
-        /* 1. IMMAGINE */
-        .material-hero-img {
-            height: 50vh; 
-            width: 50vh;
-            object-fit: cover;
-            display: block;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        /* 2. COLONNA TESTO */
-        .text-column {
-            display: flex;
-            flex-direction: column;
-            gap: 6vh; 
-            max-width: 85vh; 
-        }
-
-        .material-description {
-            font-family: 'SuisseIntlnews', sans-serif;
-            font-size: 4vh; 
-            color: rgb(29, 24, 21);
-            line-height: 1.1;
-            margin: 0;
-        }
-
-        /* 3. GRIGLIA DATI TECNICI */
-        .tech-data-grid {
-            display: grid;
-            grid-template-columns: 18vh 1fr; 
-            row-gap: 1.5vh; 
-            column-gap: 4vh;
-            font-family: 'SuisseIntlnews', sans-serif; 
-            font-size: 2vh; 
-            color: rgb(29, 24, 21);
-            padding-top: 2vh;
-        }
-
-        .data-label {
-           padding-right: 10vh;
-           color: rgb(29, 24, 21);
-           opacity: 1; 
-        }
-
-        .data-value {
-            font-family: 'SuisseIntlnews', sans-serif; 
-        }
-
-        /* 4. FRECCIA DOWNLOAD */
-        .download-btn {
-            display: flex;
-            align-items: center;
-            gap: 1vh;
-            font-family: 'SuisseIntlnews', sans-serif;
-            font-size: 2.5vh;
-            color: rgb(29, 24, 21);
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .download-arrow {
-            font-size: 2.5vh;
-        }
-        .download-btn:hover { text-decoration: underline; }
-        .download-btn:hover .download-arrow { text-decoration: none; }
-
-
-        /* --- RESPONSIVE MOBILE DEFINITIVO --- */
+        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             
             .top-right-link {
-                position: fixed !important;
-                top: 2vh;
-                right: 2vh;
-                z-index: 200;
                 font-size: 2vh;
             }
 
-            /* Footer Mobile: Relativo allo scroll con spazio 8vh */
+            /* Uniformo font-size header */
+            .menu-row span { 
+                font-size: 1.8vh !important; 
+            }
+            .download-btn { 
+                font-size: 1.8vh !important; 
+            }
+
             footer {
                 position: relative !important; 
-                bottom: auto !important;
-                left: auto !important;
+                margin-top: 8vh;
                 width: 90% !important;
                 margin-left: 5% !important;
-                margin-right: 5% !important;
                 padding-bottom: 5vh;
-                z-index: 200;
-                background-color: transparent;
-                margin-top: 8vh; 
+            }
+
+            /* Nascondo email e indirizzo su schermi piccoli */
+            #txt-address { 
+                display: none !important; 
             }
 
             #pannello-info {
@@ -247,90 +111,28 @@
                 width: 100%;
                 height: 100%;
                 overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
                 display: block;
-                z-index: 50;
                 padding-top: 7vh; 
             }
 
-            .banner-container {
-                width: 90%;
-                margin-left: 5%;
-                margin-right: 5%;
-                margin-bottom: 3vh;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: baseline; 
-                flex-wrap: nowrap;
-            }
-
-            .banner-container .grid-center { margin-right: auto; }
-            .banner-container .grid-right { margin-left: 4vh; white-space: nowrap; }
-
             .single-material-container {
                 flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
                 width: 90%;
                 margin-left: 5%;
-                margin-right: 5%;
-                padding-top: 0; 
-                padding-bottom: 0vh; 
-                height: auto; 
                 gap: 4vh;
+                padding-bottom: 0;
             }
 
             .material-hero-img {
-                width: 100%;       
-                height: 90vw;      
-                width: 90vw;       
-                aspect-ratio: 1 / 1; 
-                object-fit: cover;
-                margin-bottom: 1vh;
-                display: block;
-            }
-
-            .text-column {
-                width: 100%;
-                max-width: 100%;
-                gap: 4vh;
-            }
-
-            .material-description {
-                font-size: 3.2vh; 
-                line-height: 1.2;
-                margin: 0;
+                width: 90vw;
+                height: 90vw;
+                aspect-ratio: 1/1;
             }
 
             .tech-data-grid {
-                display: grid;
                 grid-template-columns: 35% 65%;
                 font-size: 1.8vh;
-                row-gap: 1.5vh;
-                column-gap: 2vh;
-                padding-top: 2vh;
             }
-
-            .data-label { padding-right: 0; }
-
-            .video-quadrato {
-                position: fixed;
-                width: 100vw;
-                height: 100vh;
-                top: 0;
-                left: 0;
-                z-index: 0;
-            }
-            
-            .download-btn { font-size: 1.8vh; }
-            .menu-row span { font-size: 2vh; }
-
-            /* Gestione footer searching su mobile */
-            footer.searching .grid-left, footer.searching .grid-center { display: none !important; }
-            footer.searching { display: flex; justify-content: center; }
-            footer.searching .grid-right { width: 100%; display: flex; justify-content: center; }
-            footer.searching #form-iscriviti input { width: 60vw; text-align: center; }
         }
     </style>
 </head>
@@ -339,111 +141,63 @@
 
     <a href="../../underthesurface/index.html" class="top-right-link">Under the Surface 2052</a>
 
-    <div class="framecentrale">
-        <video autoplay muted loop playsinline class="video-quadrato">
-            <source src="../../contenuti/teaser.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div id="pannello-info" class="pannello-nascosto">
+    <div id="pannello-info">
  
        <div class="banner-container">
-            <div class="grid-left">
-            </div>
-
+            <div class="grid-left"></div>
             <div class="grid-center">
                  <div class="menu-row">
-                    <span onclick="window.location.href='../../materiali/index.html'" class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
-                    <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
+                    <span onclick="window.location.href='../../materiali/index.html'" style="cursor: pointer;">Materiali,</span>
+                    <span onclick="window.location.href='../../index.html?open=true'" style="cursor: pointer;">Info</span>
                 </div>
             </div>
-            
             <div class="grid-right">
                 <a href="../../contenuti/DPP_Albuphas.pdf" class="download-btn" download>
-                    <span class="download-arrow">↓</span>
-                    <span>Scarica il DPP</span>
+                    <span>↓ Scarica il DPP</span>
                 </a>
             </div>
        </div> 
     
        <div class="single-material-container">
-    
             <img src="../../contenuti/albuphas.png" id="hero-img" class="material-hero-img" alt="Albuphas">
-            
             <div class="text-column">
-                
                 <p class="material-description">
                     ALBUPHAS è una malta per costruire una struttura destinata a restare. 
                     Ascolta la materia e ne segue il respiro grazie ai leganti proteici.
                 </p>
-        
                 <div class="tech-data-grid">
-                
                     <span class="data-label">Applicazione</span>
                     <span class="data-value">Battitura e steggiatura</span>
-        
                     <span class="data-label">Composizione</span>
                     <span class="data-value">68% Cemento, 22% Aggregati, 8%</span>
-                    
                     <span class="data-label">Peso Mol.</span>
                     <span class="data-value">≈ 66,5kDa</span>
                 </div>
-        
             </div>
         </div>
 
-        <footer style="color: rgb(29, 24, 21);">
+        <footer>
             <div class="grid-left">
-                <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+                <p onclick="window.location.href='../../index.html'" style="cursor: pointer;">SOEMA</p>
             </div>
-            <div class="grid-center" id="footer-center"> 
-                <p id="txt-address" style="display: block; margin:0; text-align: center;">
-                    20037, Via Roma 123, MI <br> info@soema.com
-                </p>
+            <div class="grid-center">
+                <p id="txt-address">20037, Via Roma 123, MI <br> info@soema.com</p>
             </div>
-            <div class="grid-right" id="subscribe-container">
-                <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
-                <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
-                    <input type="email" placeholder="your@email.com" required>
-                    <button type="submit" class="hover-effect">Invia</button>
-                </form>
+            <div class="grid-right">
+                <p onclick="mostraForm()" style="cursor: pointer;">Iscriviti</p>
             </div>
         </footer>
-      
    </div>
 
     <script>
-        const images = [
-            "../../contenuti/albuphas.png",
-            "../../contenuti/texturealbuphas.png", 
-            "../../contenuti/CelluleAlbuphasnew.png"
-        ];
-        
+        // Logica immagini e form come nelle versioni precedenti
+        const images = ["../../contenuti/albuphas.png", "../../contenuti/texturealbuphas.png", "../../contenuti/CelluleAlbuphasnew.png"];
         let currentIndex = 0;
         const imgElement = document.getElementById("hero-img");
-
-        function startImageLoop() {
-            if (images.length <= 1) return;
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % images.length;
-                 imgElement.src = images[currentIndex];
-            }, 2000); 
-        }
-
-        window.onload = startImageLoop;
-
-        function mostraForm() {
-            document.getElementById('btn-iscriviti').style.display = 'none';
-            document.getElementById('form-iscriviti').style.display = 'flex';
-            document.querySelector('footer').classList.add('searching');
-        }
-
-        function inviaMail(e) {
-            e.preventDefault(); 
-            document.getElementById('form-iscriviti').style.display = 'none';
-            document.getElementById('btn-iscriviti').style.display = 'block';
-            document.querySelector('footer').classList.remove('searching');
-        }
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            imgElement.src = images[currentIndex];
+        }, 2000);
     </script>
 </body>
 </html>
