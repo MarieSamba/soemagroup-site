@@ -15,6 +15,12 @@
             font-weight: normal;
             font-style: normal;
         }
+        @font-face {
+            font-family: 'SuisseIntlmedium';
+            src: url('../../font/SuisseIntl-Medium.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
 
         body {
             background-color: rgb(251, 250, 248);
@@ -30,7 +36,7 @@
             text-rendering: optimizeLegibility;
         }
 
-        /* FORZATURA NEWS */
+        /* --- FORZATURA GLOBALE FONT NEWS --- */
         p, span, button, input, a, div {
             font-family: 'SuisseIntlnews', sans-serif;
             color: rgb(29, 24, 21);
@@ -51,7 +57,7 @@
             z-index: 50; 
         }
 
-        /* --- GRID LAYOUT --- */
+        /* === SISTEMA A GRIGLIA === */
         .banner-container, footer {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -61,6 +67,12 @@
             width: calc(100% - 4vh); 
         }
 
+        .banner-container {
+            height: 5vh; 
+            align-items: center; 
+        }
+
+        /* Footer Desktop: Fisso in basso */
         footer {
             position: fixed;
             bottom: 0;
@@ -73,14 +85,18 @@
         .grid-center { justify-self: center; }
         .grid-right { justify-self: end; }
 
-        /* --- MATERIAL CONTENT --- */
+        /* --- LAYOUT PAGINA SINGOLA --- */
         .single-material-container {
             display: flex;
             flex-direction: row;
-            gap: 4vw;
-            padding-top: 10vh;
+            align-items: flex-start; 
+            justify-content: flex-start; 
+            height: 100%;
             width: 100%;
-            margin-left: 2vh;
+            padding-top: 10vh; 
+            padding-bottom: 10vh; 
+            gap: 4vw; 
+            margin-left: 2vh; 
         }
 
         .material-hero-img {
@@ -92,25 +108,36 @@
         .text-column {
             display: flex;
             flex-direction: column;
-            gap: 6vh;
-            max-width: 85vh;
+            gap: 6vh; 
+            max-width: 85vh; 
         }
 
-        .material-description { font-size: 4vh; line-height: 1.1; }
+        .material-description { font-size: 4vh; line-height: 1.1; margin: 0; }
 
         .tech-data-grid {
             display: grid;
-            grid-template-columns: 18vh 1fr;
-            row-gap: 1.5vh;
+            grid-template-columns: 18vh 1fr; 
+            row-gap: 1.5vh; 
             font-size: 2vh;
+            padding-top: 2vh;
         }
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             .top-right-link { font-size: 2vh; }
-            
-            /* Uniformo font-size header mobile */
             .menu-row span, .download-btn { font-size: 1.8vh !important; }
+
+            /* Footer Mobile: Relativo allo scroll, senza indirizzo centrale */
+            footer {
+                position: relative !important; 
+                bottom: auto !important;
+                left: auto !important;
+                width: 90% !important;
+                margin-left: 5% !important;
+                margin-right: 5% !important;
+                padding-bottom: 5vh;
+                margin-top: 8vh; /* Distanza di 8vh dal testo */
+            }
 
             #pannello-info {
                 position: fixed;
@@ -119,25 +146,21 @@
                 width: 100%;
                 height: 100%;
                 overflow-y: auto;
-                padding-top: 7vh;
+                -webkit-overflow-scrolling: touch;
+                display: block;
+                padding-top: 7vh; 
             }
 
             .single-material-container {
                 flex-direction: column;
                 width: 90%;
                 margin-left: 5%;
-                padding-bottom: 20vh; /* Spazio per non finire sotto al footer fisso */
+                padding-bottom: 0vh; 
+                gap: 4vh;
             }
 
             .material-hero-img { width: 90vw; height: 90vw; }
-            
             .tech-data-grid { grid-template-columns: 35% 65%; font-size: 1.8vh; }
-
-            /* Footer rimane fisso ma pulito */
-            footer {
-                background-color: transparent;
-                padding-bottom: 2vh;
-            }
         }
     </style>
 </head>
@@ -152,7 +175,7 @@
             <div class="grid-left"></div>
             <div class="grid-center">
                  <div class="menu-row">
-                    <span onclick="window.location.href='../../materiali/index.html'" style="cursor: pointer;">Materiali,</span>
+                    <span onclick="window.location.href='../../materiali/index.html'" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
                     <span onclick="window.location.href='../../index.html?open=true'" style="cursor: pointer;">Info</span>
                 </div>
             </div>
@@ -190,10 +213,11 @@
             <div class="grid-right">
                 <p id="btn-iscriviti" onclick="mostraForm()" style="cursor: pointer;">Iscriviti</p>
                 <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
-                    <input type="email" placeholder="your@email.com" required style="background:transparent; border:none; border-bottom:1px solid #1d1815; outline:none; font-size:1.8vh; width:120px;">
+                    <input type="email" placeholder="your@email.com" required style="background:transparent; border:none; border-bottom:1px solid #1d1815; outline:none; width:120px;">
                 </form>
             </div>
         </footer>
+      
    </div>
 
     <script>
@@ -210,7 +234,7 @@
             document.getElementById('form-iscriviti').style.display = 'flex';
         }
         function inviaMail(e) {
-            e.preventDefault();
+            e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';
             document.getElementById('btn-iscriviti').style.display = 'block';
         }
