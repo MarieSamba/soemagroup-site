@@ -29,9 +29,15 @@
 
         p, span, button, input, a, div { font-family: 'SuisseIntlnews', sans-serif; color: rgb(29, 24, 21); }
 
+        /* LINK FISSO - NON SI MUOVE */
         .top-right-link {
-            position: fixed; top: 2vh; right: 2vh;
-            font-size: 2.5vh; text-decoration: none; z-index: 200; cursor: pointer;
+            position: fixed !important; 
+            top: 2vh; 
+            right: 2vh;
+            font-size: 2.5vh; 
+            text-decoration: none; 
+            z-index: 200; 
+            cursor: pointer;
         }
         .top-right-link:hover { text-decoration: underline; }
 
@@ -54,6 +60,8 @@
         }
 
         .banner-container { height: 5vh; align-items: center; }
+        
+        /* FOOTER DESKTOP */
         footer { position: fixed; bottom: 0; left: 0; padding-bottom: 2vh; z-index: 100; }
 
         .grid-left { justify-self: start; }
@@ -79,12 +87,19 @@
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
-            .top-right-link { font-size: 2vh; position: fixed !important; }
+            .top-right-link { font-size: 2vh; }
 
+            /* Gestione Header Mobile */
             .menu-row span { display: none; }
-            .banner-container .grid-left::after { content: '←'; cursor: pointer; font-size: 2.5vh; display: block; }
+            .banner-container .grid-left::after { 
+                content: '←'; 
+                cursor: pointer; 
+                font-size: 2.5vh; 
+                display: block; 
+            }
             .download-btn { font-size: 1.8vh !important; }
 
+            /* Nascondo Footer su Mobile */
             footer { display: none !important; }
 
             #pannello-info {
@@ -95,7 +110,7 @@
 
             .single-material-container {
                 flex-direction: column; width: 90%; margin-left: 5%;
-                padding-bottom: 20vh; /* Aumentato a 20vh per scrolling profondo */
+                padding-bottom: 20vh; /* Spazio extra richiesto */
                 gap: 4vh;
             }
 
@@ -151,9 +166,9 @@
 
         <footer>
             <div class="grid-left">
-                <p id="footer-brand" onclick="window.location.href='../../index.html'" style="cursor: pointer;">SOEMA</p>
+                <p onclick="window.location.href='../../index.html'" style="cursor: pointer;">SOEMA</p>
             </div>
-            <div class="grid-center" id="footer-center"> 
+            <div class="grid-center"> 
                 <p style="display: block; margin:0; text-align: center;">
                     20037, Via Roma 123, MI <br> info@soema.com
                 </p>
@@ -168,7 +183,7 @@
    </div>
 
     <script>
-        const images = ["../../contenuti/Emolite.jpg", "../../contenuti/etichette-emolite.png", "../../contenuti/Emolite.jpg"];
+        const images = ["../../contenuti/Emolite.jpg", "../../contenuti/Texture-Emolite.png", "../../contenuti/Cellule-Emolite.png"];
         let currentIndex = 0;
         const imgElement = document.getElementById("hero-img");
         setInterval(() => {
