@@ -226,19 +226,19 @@
                 font-size: 2vh;
             }
 
-            /* MODIFICA FOOTER MOBILE:
-               Diventa relativo (scorre col contenuto) invece che fisso */
+            /* MODIFICA FOOTER MOBILE: SPAZIATURA AUMENTATA */
             footer {
                 position: relative !important; 
                 bottom: auto !important;
                 left: auto !important;
-                width: 90% !important; /* Si adatta alla larghezza del banner */
+                width: 90% !important;
                 margin-left: 5% !important;
                 margin-right: 5% !important;
                 padding-bottom: 5vh;
                 z-index: 200;
-                background-color: transparent; 
-                margin-top: 5vh; /* Spazio dopo il testo */
+                background-color: transparent;
+                /* AUMENTATO DA 5vh A 15vh per più spazio */ 
+                margin-top: 15vh; 
             }
 
             #pannello-info {
@@ -277,7 +277,6 @@
                 margin-left: 5%;
                 margin-right: 5%;
                 padding-top: 0; 
-                /* Riduco il padding bottom perché il footer ora è sotto, non sopra */
                 padding-bottom: 0vh; 
                 height: auto; 
                 gap: 4vh;
