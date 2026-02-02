@@ -9,9 +9,24 @@
     
     <style>
         /* --- FONTS --- */
-        @font-face { font-family: 'SuisseIntlnews'; src: url('../../font/SuisseIntl-News.otf') format('opentype'); font-weight: normal; font-style: normal; }
-        @font-face { font-family: 'SuisseIntlmedium'; src: url('../../font/SuisseIntl-Medium.otf') format('opentype'); font-weight: normal; font-style: normal; }
-        @font-face { font-family: 'SuisseIntlregular'; src: url('../../font/SuisseIntl-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }
+        @font-face {
+            font-family: 'SuisseIntlnews';
+            src: url('../../font/SuisseIntl-News.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'SuisseIntlmedium';
+            src: url('../../font/SuisseIntl-Medium.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'SuisseIntlregular'; 
+            src: url('../../font/SuisseIntl-Regular.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
 
         body {
             background-color: rgb(251, 250, 248);
@@ -27,97 +42,199 @@
             text-rendering: optimizeLegibility;
         }
 
-        p, span, button, input, a, div { font-family: 'SuisseIntlnews', sans-serif; color: rgb(29, 24, 21); }
+        /* FORZIAMO TUTTO IN NEWS */
+        p, span, button, input, a, div {
+            font-family: 'SuisseIntlnews', sans-serif;
+            color: rgb(29, 24, 21);
+        }
+
+        .no-underline, .no-underline:hover {
+            text-decoration: none !important;
+        }
 
         .top-right-link {
-            position: fixed; top: 2vh; right: 2vh;
-            font-size: 2.5vh; text-decoration: none; z-index: 100; cursor: pointer;
+            position: fixed;
+            top: 2vh;
+            right: 2vh;
+            font-family: 'SuisseIntlnews', sans-serif;
+            font-size: 2.5vh;
+            color: rgb(29, 24, 21);
+            text-decoration: none;
+            z-index: 100;
+            cursor: pointer;
         }
         .top-right-link:hover { text-decoration: underline; }
 
         .framecentrale {
-            display: flex; justify-content: center; align-items: center;
-            position: relative; z-index: 10; width: 100vw; height: 100vh;
-            margin-left: -2vh; flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            margin-left: -2vh;
+            flex-grow: 1;
         }
 
-        .video-quadrato { height: 60vh; width: 60vh; object-fit: cover; display: block; }
+        .video-quadrato {
+            height: 60vh;
+            width: 60vh;
+            object-fit: cover;
+            display: block;
+        }
 
+        /* --- PANNELLO STATICO --- */
         #pannello-info {
-            position: absolute; bottom: 0; width: 100%; height: 100%;
-            background-color: rgb(247, 241, 232); z-index: 50; overflow: hidden;
+            bottom: 0 !important; 
+            background-color: rgb(247, 241, 232) !important;
+            z-index: 50; 
         }
 
-        .banner-container, footer {
-            display: grid; grid-template-columns: 1fr auto 1fr;
-            align-items: end; margin-right: 2vh; margin-left: 2vh; width: calc(100% - 4vh); 
-        }
-
-        .banner-container { height: 5vh; align-items: center; }
-
-        footer { position: fixed; bottom: 0; left: 0; padding-bottom: 2vh; z-index: 100; }
-
-        .grid-left { justify-self: start; }
-        .grid-center { justify-self: center; }
-        .grid-right { justify-self: end; }
-
+        /* --- LAYOUT PAGINA SINGOLA --- */
         .single-material-container {
-            display: flex; flex-direction: row; align-items: flex-start; 
-            justify-content: flex-start; height: 100%; width: 100%;
-            padding-top: 10vh; padding-bottom: 10vh; gap: 4vw; margin-left: 2vh; 
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start; 
+            justify-content: flex-start; 
+            height: 100%;
+            width: 100%;
+            padding-top: 10vh; 
+            padding-bottom: 10vh; 
+            gap: 4vw; 
+            margin-left: 2vh; 
         }
 
-        .material-hero-img { height: 50vh; width: 50vh; object-fit: cover; display: block; }
+        .material-hero-img {
+            height: 50vh; 
+            width: 50vh;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
 
-        .text-column { display: flex; flex-direction: column; gap: 6vh; max-width: 85vh; }
+        .text-column {
+            display: flex;
+            flex-direction: column;
+            gap: 6vh; 
+            max-width: 85vh; 
+        }
 
-        .material-description { font-size: 4vh; line-height: 1.1; margin: 0; }
+        .material-description {
+            font-family: 'SuisseIntlnews', sans-serif;
+            font-size: 4vh; 
+            color: rgb(29, 24, 21);
+            line-height: 1.1;
+            margin: 0;
+        }
 
         .tech-data-grid {
-            display: grid; grid-template-columns: 18vh 1fr; 
-            row-gap: 1.5vh; column-gap: 4vh; font-size: 2vh; padding-top: 2vh;
+            display: grid;
+            grid-template-columns: 18vh 1fr; 
+            row-gap: 1.5vh; 
+            column-gap: 4vh;
+            font-family: 'SuisseIntlnews', sans-serif; 
+            font-size: 2vh; 
+            color: rgb(29, 24, 21);
+            padding-top: 2vh;
         }
 
-        .download-btn { display: flex; align-items: center; gap: 1vh; font-size: 2.5vh; text-decoration: none; cursor: pointer; }
+        .data-label { padding-right: 10vh; color: rgb(29, 24, 21); opacity: 1; }
+        .data-value { font-family: 'SuisseIntlnews', sans-serif; }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 1vh;
+            font-family: 'SuisseIntlnews', sans-serif;
+            font-size: 2.5vh;
+            color: rgb(29, 24, 21);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .download-arrow { font-size: 2.5vh; }
+        .download-btn:hover { text-decoration: underline; }
+        .download-btn:hover .download-arrow { text-decoration: none; }
+
+        .banner-container, footer {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: end; 
+            margin-right: 2vh;
+            margin-left: 2vh;
+            width: calc(100% - 4vh); 
+        }
+
+        /* Desktop Footer Fisso */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding-bottom: 2vh; 
+            z-index: 100; 
+        }
+
+        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+        #form-iscriviti input {
+            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
+            outline: none; width: 200px; font-family: 'SuisseIntlnews', sans-serif;
+            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
+        }
+        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
-            body { overflow: auto; height: auto; }
-            
-            #pannello-info {
-                position: relative; height: auto; min-height: 100vh;
-                display: flex; flex-direction: column; overflow: visible;
-                padding-top: 4vh;
-            }
+            .top-right-link { font-size: 2vh; }
 
-            /* Logica Freccia a Sinistra */
-            .grid-center .menu-row { display: none; } /* Nascondo menu centro */
-            .grid-left::before { 
+            /* Nascondo testi desktop al centro */
+            .menu-row span { display: none; }
+            
+            /* Freccia a sinistra ingrandita per matchare download */
+            .banner-container .grid-left::after { 
                 content: '←'; 
                 cursor: pointer; 
-                font-size: 2.5vh; /* Stessa dimensione freccia download */
+                font-size: 2.5vh; 
                 display: block;
             }
-
+            
             .download-btn { font-size: 1.8vh !important; }
 
-            /* Footer Mobile scorrevole */
+            /* Footer Mobile: Scorrevole e distanziato 8vh */
             footer {
-                position: relative !important; bottom: auto !important; left: auto !important;
-                width: 90% !important; margin-left: 5% !important;
-                margin-top: 8vh; padding-bottom: 5vh;
+                position: relative !important; 
+                bottom: auto !important;
+                left: auto !important;
+                width: 90% !important;
+                margin-left: 5% !important;
+                margin-top: 8vh; 
+                padding-bottom: 5vh;
             }
 
             #footer-center p { display: none !important; }
 
+            #pannello-info {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                display: block;
+                z-index: 50;
+                padding-top: 7vh; 
+            }
+
             .single-material-container {
-                flex-direction: column; width: 90%; margin-left: 5%;
-                padding-top: 2vh; padding-bottom: 0; gap: 4vh; height: auto;
+                flex-direction: column;
+                width: 90%;
+                margin-left: 5%;
+                padding-bottom: 0; 
+                gap: 4vh;
             }
 
             .material-hero-img { width: 90vw; height: 90vw; }
             .tech-data-grid { grid-template-columns: 35% 65%; font-size: 1.8vh; }
-            .material-description { font-size: 3.2vh; }
         }
     </style>
 </head>
@@ -126,20 +243,27 @@
 
     <a href="../../underthesurface/index.html" class="top-right-link">Under the Surface 2052</a>
 
-    <div id="pannello-info">
+    <div class="framecentrale">
+        <video autoplay muted loop playsinline class="video-quadrato">
+            <source src="../../contenuti/teaser.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="pannello-info" class="pannello-nascosto">
  
        <div class="banner-container">
-            <div class="grid-left" onclick="window.location.href='../../materiali/index.html'" style="cursor: pointer;">
-                </div>
+            <div class="grid-left" onclick="window.location.href='../../materiali/index.html'"></div>
+            
             <div class="grid-center">
-                 <div class="menu-row">
-                    <span onclick="window.location.href='../../materiali/index.html'" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
-                    <span onclick="window.location.href='../../index.html?open=true'" style="cursor: pointer;">Info</span>
+                 <div class="menu-row" onclick="window.location.href='../../materiali/index.html'">
+                    <span class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
+                    <span onclick="event.stopPropagation(); window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
                 </div>
             </div>
+            
             <div class="grid-right">
                 <a href="../../contenuti/DPP_Albuphas.pdf" class="download-btn" download>
-                    <span style="font-size: 2.5vh;">↓</span>
+                    <span class="download-arrow">↓</span>
                     <span>Scarica il DPP</span>
                 </a>
             </div>
@@ -165,20 +289,22 @@
 
         <footer>
             <div class="grid-left">
-                <p onclick="window.location.href='../../index.html'" style="cursor: pointer;">SOEMA</p>
+                <p onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
             </div>
             <div class="grid-center" id="footer-center"> 
                 <p id="txt-address" style="display: block; margin:0; text-align: center;">
                     20037, Via Roma 123, MI <br> info@soema.com
                 </p>
             </div>
-            <div class="grid-right">
-                <p id="btn-iscriviti" onclick="mostraForm()" style="cursor: pointer;">Iscriviti</p>
+            <div class="grid-right" id="subscribe-container">
+                <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
                 <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
-                    <input type="email" placeholder="your@email.com" required style="background:transparent; border:none; border-bottom:1px solid #1d1815; outline:none; width:120px;">
+                    <input type="email" placeholder="your@email.com" required>
+                    <button type="submit" class="hover-effect">Invia</button>
                 </form>
             </div>
         </footer>
+      
    </div>
 
     <script>
