@@ -45,12 +45,16 @@
         }
 
         #pannello-info {
-            bottom: 0 !important; 
-            background-color: rgb(247, 241, 232) !important;
-            z-index: 50; 
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(247, 241, 232);
+            z-index: 50;
+            overflow: hidden; /* Desktop non scrolla */
         }
 
-        /* === SISTEMA A GRIGLIA === */
+        /* === GRID LAYOUT === */
         .banner-container, footer {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -65,6 +69,7 @@
             align-items: center; 
         }
 
+        /* DESKTOP: Footer sempre fisso */
         footer {
             position: fixed;
             bottom: 0;
@@ -77,7 +82,7 @@
         .grid-center { justify-self: center; }
         .grid-right { justify-self: end; }
 
-        /* --- LAYOUT PAGINA SINGOLA --- */
+        /* --- LAYOUT PAGINA --- */
         .single-material-container {
             display: flex;
             flex-direction: row;
@@ -86,7 +91,6 @@
             height: 100%;
             width: 100%;
             padding-top: 10vh; 
-            padding-bottom: 10vh; 
             gap: 4vw; 
             margin-left: 2vh; 
         }
@@ -116,49 +120,37 @@
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
-            .top-right-link { font-size: 2vh; }
-            
-            /* Freccia e Download uniformati */
+            #pannello-info {
+                position: fixed;
+                overflow-y: auto; /* Attiva scroll solo mobile */
+                -webkit-overflow-scrolling: touch;
+            }
+
             .back-arrow, .download-btn { font-size: 1.8vh !important; }
 
+            /* MOBILE: Footer segue il flusso */
             footer {
                 position: relative !important; 
                 bottom: auto !important;
                 left: auto !important;
                 width: 90% !important;
                 margin-left: 5% !important;
-                margin-right: 5% !important;
+                margin-top: 8vh; 
                 padding-bottom: 5vh;
-                margin-top: 8vh; /* Distanza richiesta */
-            }
-
-            #pannello-info {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                display: block;
-                padding-top: 7vh; 
             }
 
             .single-material-container {
                 flex-direction: column;
                 width: 90%;
                 margin-left: 5%;
+                padding-top: 0;
                 padding-bottom: 0; 
                 gap: 4vh;
             }
 
-            /* Impedisce al footer di attaccarsi ai dati tecnici */
-            .text-column {
-                padding-bottom: 2vh;
-            }
-
             .material-hero-img { width: 90vw; height: 90vw; }
             .tech-data-grid { grid-template-columns: 35% 65%; font-size: 1.8vh; }
+            .text-column { padding-bottom: 0; }
         }
     </style>
 </head>
@@ -172,7 +164,7 @@
        <div class="banner-container">
             <div class="grid-left"></div>
             <div class="grid-center">
-                 <span onclick="window.location.href='../../materiali/index.html'" class="back-arrow" style="cursor: pointer; font-size: 2.5vh;">←</span>
+                 <span onclick="window.location.href='../../materiali/index.html'" style="cursor: pointer; font-size: 2.5vh;">←</span>
             </div>
             <div class="grid-right">
                 <a href="../../contenuti/DPP_Albuphas.pdf" class="download-btn" download style="text-decoration: none;">
