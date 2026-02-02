@@ -189,7 +189,7 @@
             /* Nascondo testi desktop al centro */
             .menu-row span { display: none; }
             
-            /* Freccia a sinistra ingrandita per matchare download */
+            /* Freccia a sinistra ingrandita */
             .banner-container .grid-left::after { 
                 content: '←'; 
                 cursor: pointer; 
@@ -199,18 +199,10 @@
             
             .download-btn { font-size: 1.8vh !important; }
 
-            /* Footer Mobile: Scorrevole e distanziato 8vh */
+            /* RESPONSIVE: Nascondo completamente il footer su mobile */
             footer {
-                position: relative !important; 
-                bottom: auto !important;
-                left: auto !important;
-                width: 90% !important;
-                margin-left: 5% !important;
-                margin-top: 8vh; 
-                padding-bottom: 5vh;
+                display: none !important;
             }
-
-            #footer-center p { display: none !important; }
 
             #pannello-info {
                 position: fixed;
@@ -229,7 +221,7 @@
                 flex-direction: column;
                 width: 90%;
                 margin-left: 5%;
-                padding-bottom: 0; 
+                padding-bottom: 5vh; /* Un po' di margine finale per lo scroll */
                 gap: 4vh;
             }
 
@@ -289,7 +281,7 @@
 
         <footer>
             <div class="grid-left">
-                <p onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+                <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
             </div>
             <div class="grid-center" id="footer-center"> 
                 <p id="txt-address" style="display: block; margin:0; text-align: center;">
