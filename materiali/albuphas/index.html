@@ -15,12 +15,6 @@
             font-weight: normal;
             font-style: normal;
         }
-        @font-face {
-            font-family: 'SuisseIntlmedium';
-            src: url('../../font/SuisseIntl-Medium.otf') format('opentype'); 
-            font-weight: normal;
-            font-style: normal;
-        }
 
         body {
             background-color: rgb(251, 250, 248);
@@ -36,7 +30,6 @@
             text-rendering: optimizeLegibility;
         }
 
-        /* --- FORZATURA GLOBALE FONT NEWS --- */
         p, span, button, input, a, div {
             font-family: 'SuisseIntlnews', sans-serif;
             color: rgb(29, 24, 21);
@@ -72,7 +65,6 @@
             align-items: center; 
         }
 
-        /* Footer Desktop: Fisso in basso */
         footer {
             position: fixed;
             bottom: 0;
@@ -125,9 +117,10 @@
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             .top-right-link { font-size: 2vh; }
-            .menu-row span, .download-btn { font-size: 1.8vh !important; }
+            
+            /* Freccia e Download uniformati */
+            .back-arrow, .download-btn { font-size: 1.8vh !important; }
 
-            /* Footer Mobile: Relativo allo scroll, senza indirizzo centrale */
             footer {
                 position: relative !important; 
                 bottom: auto !important;
@@ -136,7 +129,7 @@
                 margin-left: 5% !important;
                 margin-right: 5% !important;
                 padding-bottom: 5vh;
-                margin-top: 8vh; /* Distanza di 8vh dal testo */
+                margin-top: 8vh; /* Distanza richiesta */
             }
 
             #pannello-info {
@@ -155,8 +148,13 @@
                 flex-direction: column;
                 width: 90%;
                 margin-left: 5%;
-                padding-bottom: 0vh; 
+                padding-bottom: 0; 
                 gap: 4vh;
+            }
+
+            /* Impedisce al footer di attaccarsi ai dati tecnici */
+            .text-column {
+                padding-bottom: 2vh;
             }
 
             .material-hero-img { width: 90vw; height: 90vw; }
@@ -174,10 +172,7 @@
        <div class="banner-container">
             <div class="grid-left"></div>
             <div class="grid-center">
-                 <div class="menu-row">
-                    <span onclick="window.location.href='../../materiali/index.html'" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
-                    <span onclick="window.location.href='../../index.html?open=true'" style="cursor: pointer;">Info</span>
-                </div>
+                 <span onclick="window.location.href='../../materiali/index.html'" class="back-arrow" style="cursor: pointer; font-size: 2.5vh;">←</span>
             </div>
             <div class="grid-right">
                 <a href="../../contenuti/DPP_Albuphas.pdf" class="download-btn" download style="text-decoration: none;">
@@ -208,8 +203,7 @@
             <div class="grid-left">
                 <p onclick="window.location.href='../../index.html'" style="cursor: pointer;">SOEMA</p>
             </div>
-            <div class="grid-center">
-                </div>
+            <div class="grid-center"></div>
             <div class="grid-right">
                 <p id="btn-iscriviti" onclick="mostraForm()" style="cursor: pointer;">Iscriviti</p>
                 <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
