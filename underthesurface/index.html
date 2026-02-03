@@ -50,21 +50,26 @@
             text-decoration: none !important;
         }
 
+        /* Classe per effetto hover (usata nel footer) */
         .hover-effect:hover {
             text-decoration: underline;
         }
 
-        /* Tasto Chiudi in alto a destra */
-        .top-right-link {
+        /* Tasto FRECCIA in alto a SINISTRA (Senza hover effect) */
+        .top-left-link {
             position: fixed;
             top: 2vh;
-            right: 2vh;
+            left: 2vh; /* Posizionato a sinistra */
             font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
             color: rgb(29, 24, 21);
-            text-decoration: none;
+            text-decoration: none; /* Niente sottolineatura di base */
             z-index: 100;
             cursor: pointer;
+        }
+        /* Assicura che non ci sia sottolineatura nemmeno all'hover */
+        .top-left-link:hover {
+            text-decoration: none;
         }
 
         .framecentrale {
@@ -106,27 +111,9 @@
         .grid-right { justify-self: end; text-align: right; }
 
         .grid-left p, .grid-center p, .grid-right p { margin: 0; }
-
-        /* --- STILE INPUT FORM --- */
-        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
-        
-        #form-iscriviti input {
-            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
-            outline: none; width: 200px; 
-            font-family: 'SuisseIntlnews', sans-serif; 
-            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
-        }
-        
-        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
-
         
         @media (max-width: 768px) {
             .video-quadrato { width: 70vw; height: 70vw; }
-            
-            footer.searching .grid-left, footer.searching .grid-center { display: none !important; }
-            footer.searching { display: flex; justify-content: center; }
-            footer.searching .grid-right { width: 100%; display: flex; justify-content: center; }
-            footer.searching #form-iscriviti input { width: 60vw; text-align: center; }
             
             /* Su mobile l'indirizzo potrebbe andare a capo */
             #txt-address { white-space: nowrap; }
@@ -136,11 +123,11 @@
 
 <body>
 
-    <a href="../index.html" class="top-right-link hover-effect">X</a>
+    <a href="../index.html" class="top-left-link">←</a>
 
     <div class="framecentrale">
         <video autoplay muted loop playsinline class="video-quadrato">
-            <source src="../contenuti/teaser.mp4" type="video/mp4">
+            <source src="../contenuti/UDS.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -155,28 +142,10 @@
             </p>
         </div>
 
-        <div class="grid-right" id="subscribe-container">
-            <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
-            <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
-                <input type="email" placeholder="your@email.com" required>
-                <button type="submit" class="hover-effect">Invia</button>
-            </form>
+        <div class="grid-right">
+            <p>Milano 2052</p>
         </div>
     </footer>
 
-    <script>
-        function mostraForm() {
-            document.getElementById('btn-iscriviti').style.display = 'none';
-            document.getElementById('form-iscriviti').style.display = 'flex';
-            document.querySelector('footer').classList.add('searching');
-        }
-
-        function inviaMail(e) {
-            e.preventDefault(); 
-            document.getElementById('form-iscriviti').style.display = 'none';
-            document.getElementById('btn-iscriviti').style.display = 'block';
-            document.querySelector('footer').classList.remove('searching');
-        }
-    </script>
 </body>
 </html>

@@ -9,24 +9,9 @@
     
     <style>
         /* --- FONTS --- */
-        @font-face {
-            font-family: 'SuisseIntlnews';
-            src: url('../../font/SuisseIntl-News.otf') format('opentype'); 
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'SuisseIntlmedium';
-            src: url('../../font/SuisseIntl-Medium.otf') format('opentype'); 
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'SuisseIntlregular'; 
-            src: url('../../font/SuisseIntl-Regular.otf') format('opentype'); 
-            font-weight: normal;
-            font-style: normal;
-        }
+        @font-face { font-family: 'SuisseIntlnews'; src: url('../../font/SuisseIntl-News.otf') format('opentype'); font-weight: normal; font-style: normal; }
+        @font-face { font-family: 'SuisseIntlmedium'; src: url('../../font/SuisseIntl-Medium.otf') format('opentype'); font-weight: normal; font-style: normal; }
+        @font-face { font-family: 'SuisseIntlregular'; src: url('../../font/SuisseIntl-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }
 
         body {
             background-color: rgb(251, 250, 248);
@@ -37,31 +22,26 @@
             margin-left: 2vh;
             flex-direction: column;
             overflow: hidden;
-            
-            /* Fix font Safari */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
-        }
-
-        /* --- FORZATURA GLOBALE FONT NEWS --- */
-        p, span, button, input, a, div {
-            font-family: 'SuisseIntlnews', sans-serif;
-            color: rgb(29, 24, 21);
         }
 
         .no-underline, .no-underline:hover {
             text-decoration: none !important;
         }
 
+        /* --- REGOLA TUTTO NEWS --- */
+        p, span, button, input, a, div, .data-value, .data-label, .download-btn, .top-right-link {
+            font-family: 'SuisseIntlnews', sans-serif !important;
+            color: rgb(29, 24, 21);
+        }
+
         .top-right-link {
             position: fixed;
             top: 2vh;
             right: 2vh;
-            /* Cambiato da Medium a News */
-            font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
-            color: rgb(29, 24, 21);
             text-decoration: none;
             z-index: 100;
             cursor: pointer;
@@ -108,7 +88,6 @@
             margin-left: 2vh; 
         }
 
-        /* 1. IMMAGINE */
         .material-hero-img {
             height: 50vh; 
             width: 50vh;
@@ -117,7 +96,6 @@
             transition: opacity 0.5s ease-in-out;
         }
 
-        /* 2. COLONNA TESTO */
         .text-column {
             display: flex;
             flex-direction: column;
@@ -126,71 +104,63 @@
         }
 
         .material-description {
-            font-family: 'SuisseIntlnews', sans-serif;
             font-size: 4vh; 
-            color: rgb(29, 24, 21);
             line-height: 1.1;
             margin: 0;
         }
 
-        /* 3. GRIGLIA DATI TECNICI */
+        /* --- GRIGLIA DATI TECNICI --- */
         .tech-data-grid {
             display: grid;
             grid-template-columns: 18vh 1fr; 
             row-gap: 1.5vh; 
             column-gap: 4vh;
-            /* Cambiato da Regular a News */
-            font-family: 'SuisseIntlnews', sans-serif; 
             font-size: 2vh; 
-            color: rgb(29, 24, 21);
             padding-top: 2vh;
         }
 
         .data-label {
            padding-right: 10vh;
-           color: rgb(29, 24, 21);
-           opacity: 1; 
+           opacity: 1; /* Nero pieno */
         }
 
-        .data-value {
-            /* Cambiato da Medium a News */
-            font-family: 'SuisseIntlnews', sans-serif; 
-        }
-
-        /* 4. FRECCIA DOWNLOAD */
         .download-btn {
             display: flex;
             align-items: center;
             gap: 1vh;
-            /* Cambiato da Medium a News */
-            font-family: 'SuisseIntlnews', sans-serif;
             font-size: 2.5vh;
-            color: rgb(29, 24, 21);
             text-decoration: none;
             cursor: pointer;
         }
-        .download-arrow {
-            font-size: 2.5vh;
-        }
+        .download-arrow { font-size: 2.5vh; }
         .download-btn:hover { text-decoration: underline; }
         .download-btn:hover .download-arrow { text-decoration: none; }
 
-        /* --- STILE INPUT FORM --- */
-        #form-iscriviti { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
-        
-        #form-iscriviti input {
-            background: transparent; border: none; border-bottom: 1.5px solid rgb(29, 24, 21);
-            outline: none; width: 200px; 
-            font-family: 'SuisseIntlnews', sans-serif; /* News */
-            font-size: 2vh; color: rgb(29, 24, 21); padding: 0;
+        /* Banner e Footer Desktop */
+        .banner-container, footer {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: end;
+            margin-right: 2vh;
+            margin-left: 2vh;
+            width: calc(100% - 4vh);
         }
-        
-        #form-iscriviti button { background: transparent; border: none; cursor: pointer; padding: 0; }
 
+        /* Altezza minima banner desktop */
+        .banner-container { min-height: 5vh; align-items: center; }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding-bottom: 2vh;
+            z-index: 100;
+        }
 
         /* --- RESPONSIVE MOBILE DEFINITIVO --- */
         @media (max-width: 768px) {
             
+            /* 1. LINK "UNDER THE SURFACE" FISSO IN ALTO */
             .top-right-link {
                 position: fixed !important;
                 top: 2vh;
@@ -199,16 +169,10 @@
                 font-size: 2vh;
             }
 
-            footer {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                padding-bottom: 2vh;
-                z-index: 200;
-                background-color: transparent; 
-            }
+            /* 2. FOOTER NASCOSTO */
+            footer { display: none !important; }
 
+            /* 3. PANNELLO SCROLLABILE */
             #pannello-info {
                 position: fixed;
                 top: 0;
@@ -222,6 +186,7 @@
                 padding-top: 7vh; 
             }
 
+            /* 4. BANNER (ALLINEAMENTO BASELINE + FRECCIA) */
             .banner-container {
                 width: 90%;
                 margin-left: 5%;
@@ -234,9 +199,22 @@
                 flex-wrap: nowrap;
             }
 
+            /* Nascondo menu testuale desktop */
+            .menu-row span { display: none; }
+
+            /* Inserisco la freccia a sinistra */
+            .banner-container .grid-left::after { 
+                content: '←'; 
+                cursor: pointer; 
+                font-size: 2.5vh; 
+                display: block;
+            }
+
+            /* Gestione distanze banner */
             .banner-container .grid-center { margin-right: auto; }
             .banner-container .grid-right { margin-left: 4vh; white-space: nowrap; }
 
+            /* 5. CONTENITORE MATERIALE */
             .single-material-container {
                 flex-direction: column;
                 justify-content: flex-start;
@@ -245,11 +223,12 @@
                 margin-left: 5%;
                 margin-right: 5%;
                 padding-top: 0; 
-                padding-bottom: 20vh; 
+                padding-bottom: 25vh; /* Spazio in fondo */
                 height: auto; 
                 gap: 4vh;
             }
 
+            /* 6. IMMAGINE (CUBO PERFETTO MOBILE) */
             .material-hero-img {
                 width: 100%;       
                 height: 90vw;      
@@ -260,6 +239,7 @@
                 display: block;
             }
 
+            /* 7. COLONNA TESTI */
             .text-column {
                 width: 100%;
                 max-width: 100%;
@@ -272,6 +252,7 @@
                 margin: 0;
             }
 
+            /* 8. GRIGLIA DATI TECNICI */
             .tech-data-grid {
                 display: grid;
                 grid-template-columns: 35% 65%;
@@ -283,6 +264,7 @@
 
             .data-label { padding-right: 0; }
 
+            /* Video background fixed mobile */
             .video-quadrato {
                 position: fixed;
                 width: 100vw;
@@ -293,7 +275,6 @@
             }
             
             .download-btn { font-size: 1.8vh; }
-            .menu-row span { font-size: 2vh; }
         }
     </style>
 </head>
@@ -311,9 +292,7 @@
     <div id="pannello-info" class="pannello-nascosto">
  
        <div class="banner-container">
-            <div class="grid-left">
-            </div>
-
+            <div class="grid-left" onclick="window.location.href='../../materiali/index.html'"></div>
             <div class="grid-center">
                  <div class="menu-row">
                     <span onclick="window.location.href='../../materiali/index.html'" class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
@@ -322,7 +301,7 @@
             </div>
             
             <div class="grid-right">
-                <a href="../../contenuti/DPP_Keratex.pdf" class="download-btn" download>
+                <a href="../../contenuti/dppKERATEX.pdf" class="download-btn" download>
                     <span class="download-arrow">↓</span>
                     <span>Scarica il DPP</span>
                 </a>
@@ -330,77 +309,59 @@
        </div> 
     
        <div class="single-material-container">
-    
             <img src="../../contenuti/Keratex.jpg" id="hero-img" class="material-hero-img" alt="Keratex">
-            
             <div class="text-column">
-                
                 <p class="material-description">
-                    KERATEX è un composito nato per sorreggere una struttura destinata a lasciare il segno. 
-                    Come un buon legno, ascolta la fibra e ne asseconda la resistenza.
+                    KERATEX è un rivestimento ceramico ad alte prestazioni che scherma e protegge. 
+                    La sua struttura molecolare ispirata alla cheratina offre una resilienza senza precedenti contro l'usura.
                 </p>
-        
                 <div class="tech-data-grid">
-                
                     <span class="data-label">Applicazione</span>
-                    <span class="data-value">Installazione a secco</span>
-        
+                    <span class="data-value">Rivestimento protettivo</span>
                     <span class="data-label">Composizione</span>
-                    <span class="data-value">70% Cellulosa, 20% Cheratina</span>
-                    
-                    <span class="data-label">Peso Spec.</span>
-                    <span class="data-value">≈ 8,5 – 9,2 kg/m²</span>
+                    <span class="data-value">55% Ceramica, 35% Keratina sint., 10% Al</span>
+                    <span class="data-label">Durezza</span>
+                    <span class="data-value">9H Mohs Scale</span>
                 </div>
-        
             </div>
         </div>
-      
+
+        <footer>
+            <div class="grid-left">
+                <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
+            </div>
+            <div class="grid-center" id="footer-center"> 
+                <p id="txt-address" style="display: block; margin:0; text-align: center;">
+                    20037, Via Roma 123, MI <br> info@soema.com
+                </p>
+            </div>
+            <div class="grid-right" id="subscribe-container">
+                <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
+                <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
+                    <input type="email" placeholder="your@email.com" required style="background:transparent; border:none; border-bottom:1px solid #1d1815; outline:none; width:150px;">
+                    <button type="submit" style="background:transparent; border:none; cursor:pointer;">Invia</button>
+                </form>
+            </div>
+        </footer>
    </div>
 
-   <footer style="color: rgb(29, 24, 21); z-index: 100;">
-        <div class="grid-left">
-            <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
-        </div>
-        <div class="grid-center" id="footer-center"> 
-            <p id="txt-address" style="display: block; margin:0; text-align: center;">
-                20037, Via Roma 123, MI <br> info@soema.com
-            </p>
-        </div>
-        <div class="grid-right" id="subscribe-container">
-            <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
-            <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
-                <input type="email" placeholder="your@email.com" required>
-                <button type="submit" class="hover-effect">Invia</button>
-            </form>
-        </div>
-    </footer>
-
     <script>
-        // --- SCRIPT PER LOOP IMMAGINI KERATEX ---
         const images = [
-            "../../contenuti/Keratex.jpg",
+            "../../contenuti/Keratex.jpg", 
             "../../contenuti/textureKeratex.png", 
             "../../contenuti/capelli al microscopio.png"
         ];
-        
         let currentIndex = 0;
         const imgElement = document.getElementById("hero-img");
-
-        function startImageLoop() {
-            if (images.length <= 1) return;
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % images.length;
-                 imgElement.src = images[currentIndex];
-            }, 2000); 
-        }
-
-        window.onload = startImageLoop;
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            imgElement.src = images[currentIndex];
+        }, 2000);
 
         function mostraForm() {
             document.getElementById('btn-iscriviti').style.display = 'none';
             document.getElementById('form-iscriviti').style.display = 'flex';
         }
-
         function inviaMail(e) {
             e.preventDefault(); 
             document.getElementById('form-iscriviti').style.display = 'none';

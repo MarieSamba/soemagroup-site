@@ -27,95 +27,254 @@
             text-rendering: optimizeLegibility;
         }
 
-        p, span, button, input, a, div { font-family: 'SuisseIntlnews', sans-serif; color: rgb(29, 24, 21); }
+        .no-underline, .no-underline:hover {
+            text-decoration: none !important;
+        }
 
-        /* LINK FISSO - NON SI MUOVE */
+        /* --- REGOLA TUTTO NEWS --- */
+        p, span, button, input, a, div, .data-value, .data-label, .download-btn, .top-right-link {
+            font-family: 'SuisseIntlnews', sans-serif !important;
+            color: rgb(29, 24, 21);
+        }
+
         .top-right-link {
-            position: fixed !important; 
-            top: 2vh; 
+            position: fixed;
+            top: 2vh;
             right: 2vh;
-            font-size: 2.5vh; 
-            text-decoration: none; 
-            z-index: 200; 
+            font-size: 2.5vh;
+            text-decoration: none;
+            z-index: 100;
             cursor: pointer;
         }
         .top-right-link:hover { text-decoration: underline; }
 
         .framecentrale {
-            display: flex; justify-content: center; align-items: center;
-            position: relative; z-index: 10; width: 100vw; height: 100vh;
-            margin-left: -2vh; flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            margin-left: -2vh;
+            flex-grow: 1;
         }
 
-        .video-quadrato { height: 60vh; width: 60vh; object-fit: cover; display: block; }
+        .video-quadrato {
+            height: 60vh;
+            width: 60vh;
+            object-fit: cover;
+            display: block;
+        }
 
+        /* --- PANNELLO STATICO --- */
         #pannello-info {
-            position: absolute; bottom: 0; width: 100%; height: 100%;
-            background-color: rgb(247, 241, 232); z-index: 50; overflow: hidden;
+            bottom: 0 !important; 
+            background-color: rgb(247, 241, 232) !important;
+            z-index: 50; 
         }
 
-        .banner-container, footer {
-            display: grid; grid-template-columns: 1fr auto 1fr;
-            align-items: end; margin-right: 2vh; margin-left: 2vh; width: calc(100% - 4vh); 
-        }
-
-        .banner-container { height: 5vh; align-items: center; }
-        
-        /* FOOTER DESKTOP */
-        footer { position: fixed; bottom: 0; left: 0; padding-bottom: 2vh; z-index: 100; }
-
-        .grid-left { justify-self: start; }
-        .grid-center { justify-self: center; }
-        .grid-right { justify-self: end; }
-
+        /* --- LAYOUT PAGINA SINGOLA --- */
         .single-material-container {
-            display: flex; flex-direction: row; align-items: flex-start; 
-            justify-content: flex-start; height: 100%; width: 100%;
-            padding-top: 10vh; padding-bottom: 10vh; gap: 4vw; margin-left: 2vh; 
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start; 
+            justify-content: flex-start; 
+            height: 100%;
+            width: 100%;
+            padding-top: 10vh; 
+            padding-bottom: 10vh; 
+            gap: 4vw; 
+            margin-left: 2vh; 
         }
 
-        .material-hero-img { height: 50vh; width: 50vh; object-fit: cover; display: block; transition: opacity 0.5s ease-in-out; }
-        .text-column { display: flex; flex-direction: column; gap: 6vh; max-width: 85vh; }
-        .material-description { font-size: 4vh; line-height: 1.1; margin: 0; }
+        .material-hero-img {
+            height: 50vh; 
+            width: 50vh;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
 
+        .text-column {
+            display: flex;
+            flex-direction: column;
+            gap: 6vh; 
+            max-width: 85vh; 
+        }
+
+        .material-description {
+            font-size: 4vh; 
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        /* --- GRIGLIA DATI TECNICI --- */
         .tech-data-grid {
-            display: grid; grid-template-columns: 18vh 1fr; 
-            row-gap: 1.5vh; column-gap: 4vh; font-size: 2vh; padding-top: 2vh;
+            display: grid;
+            grid-template-columns: 18vh 1fr; 
+            row-gap: 1.5vh; 
+            column-gap: 4vh;
+            font-size: 2vh; 
+            padding-top: 2vh;
         }
 
-        .download-btn { display: flex; align-items: center; gap: 1vh; font-size: 2.5vh; text-decoration: none; cursor: pointer; }
+        .data-label {
+           padding-right: 10vh;
+           opacity: 1; /* Nero pieno */
+        }
 
-        /* --- RESPONSIVE MOBILE --- */
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 1vh;
+            font-size: 2.5vh;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .download-arrow { font-size: 2.5vh; }
+        .download-btn:hover { text-decoration: underline; }
+        .download-btn:hover .download-arrow { text-decoration: none; }
+
+        /* Banner e Footer Desktop */
+        .banner-container, footer {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: end;
+            margin-right: 2vh;
+            margin-left: 2vh;
+            width: calc(100% - 4vh);
+        }
+
+        /* Altezza minima banner desktop */
+        .banner-container { min-height: 5vh; align-items: center; }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding-bottom: 2vh;
+            z-index: 100;
+        }
+
+        /* --- RESPONSIVE MOBILE DEFINITIVO --- */
         @media (max-width: 768px) {
-            .top-right-link { font-size: 2vh; }
+            
+            /* 1. LINK "UNDER THE SURFACE" FISSO IN ALTO */
+            .top-right-link {
+                position: fixed !important;
+                top: 2vh;
+                right: 2vh;
+                z-index: 200;
+                font-size: 2vh;
+            }
 
-            /* Gestione Header Mobile */
+            /* 2. FOOTER NASCOSTO */
+            footer { display: none !important; }
+
+            /* 3. PANNELLO SCROLLABILE */
+            #pannello-info {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                display: block;
+                z-index: 50;
+                padding-top: 7vh; 
+            }
+
+            /* 4. BANNER (ALLINEAMENTO BASELINE + FRECCIA) */
+            .banner-container {
+                width: 90%;
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-bottom: 3vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: baseline; 
+                flex-wrap: nowrap;
+            }
+
+            /* Nascondo menu testuale desktop */
             .menu-row span { display: none; }
+
+            /* Inserisco la freccia a sinistra */
             .banner-container .grid-left::after { 
                 content: '←'; 
                 cursor: pointer; 
                 font-size: 2.5vh; 
-                display: block; 
-            }
-            .download-btn { font-size: 1.8vh !important; }
-
-            /* Nascondo Footer su Mobile */
-            footer { display: none !important; }
-
-            #pannello-info {
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                overflow-y: auto; -webkit-overflow-scrolling: touch;
-                display: block; z-index: 50; padding-top: 7vh; 
+                display: block;
             }
 
+            /* Gestione distanze banner */
+            .banner-container .grid-center { margin-right: auto; }
+            .banner-container .grid-right { margin-left: 4vh; white-space: nowrap; }
+
+            /* 5. CONTENITORE MATERIALE */
             .single-material-container {
-                flex-direction: column; width: 90%; margin-left: 5%;
-                padding-bottom: 20vh; /* Spazio extra richiesto */
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                width: 90%;
+                margin-left: 5%;
+                margin-right: 5%;
+                padding-top: 0; 
+                padding-bottom: 25vh; /* Spazio in fondo */
+                height: auto; 
                 gap: 4vh;
             }
 
-            .material-hero-img { width: 90vw; height: 90vw; }
-            .tech-data-grid { grid-template-columns: 35% 65%; font-size: 1.8vh; }
+            /* 6. IMMAGINE (CUBO PERFETTO MOBILE) */
+            .material-hero-img {
+                width: 100%;       
+                height: 90vw;      
+                width: 90vw;       
+                aspect-ratio: 1 / 1; 
+                object-fit: cover;
+                margin-bottom: 1vh;
+                display: block;
+            }
+
+            /* 7. COLONNA TESTI */
+            .text-column {
+                width: 100%;
+                max-width: 100%;
+                gap: 4vh;
+            }
+
+            .material-description {
+                font-size: 3.2vh; 
+                line-height: 1.2;
+                margin: 0;
+            }
+
+            /* 8. GRIGLIA DATI TECNICI */
+            .tech-data-grid {
+                display: grid;
+                grid-template-columns: 35% 65%;
+                font-size: 1.8vh;
+                row-gap: 1.5vh;
+                column-gap: 2vh;
+                padding-top: 2vh;
+            }
+
+            .data-label { padding-right: 0; }
+
+            /* Video background fixed mobile */
+            .video-quadrato {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+            
+            .download-btn { font-size: 1.8vh; }
         }
     </style>
 </head>
@@ -130,18 +289,20 @@
         </video>
     </div>
 
-    <div id="pannello-info">
+    <div id="pannello-info" class="pannello-nascosto">
+ 
        <div class="banner-container">
             <div class="grid-left" onclick="window.location.href='../../materiali/index.html'"></div>
             <div class="grid-center">
-                 <div class="menu-row" onclick="window.location.href='../../materiali/index.html'">
-                    <span style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
-                    <span onclick="event.stopPropagation(); window.location.href='../../index.html?open=true'" style="cursor: pointer;">Info</span>
+                 <div class="menu-row">
+                    <span onclick="window.location.href='../../materiali/index.html'" class="hover-effect" style="cursor: pointer; margin-right: 0.4vh;">Materiali,</span>
+                    <span onclick="window.location.href='../../index.html?open=true'" class="hover-effect" style="cursor: pointer;">Info</span>
                 </div>
             </div>
+            
             <div class="grid-right">
-                <a href="../../contenuti/DPP_Emolite.pdf" class="download-btn" download>
-                    <span style="font-size: 2.5vh;">↓</span>
+                <a href="../../contenuti/dppEMOLITE.pdf" class="download-btn" download>
+                    <span class="download-arrow">↓</span>
                     <span>Scarica il DPP</span>
                 </a>
             </div>
@@ -151,7 +312,8 @@
             <img src="../../contenuti/Emolite.jpg" id="hero-img" class="material-hero-img" alt="Emolite">
             <div class="text-column">
                 <p class="material-description">
-                    EMOLITE è un pigmento che infonde vita alle superfici, unendo estetica e durata strutturale. Ridefinisce l'identità cromatica delle grandi opere attraverso il ferro e l'ossigeno.
+                    EMOLITE è un pigmento che infonde vita alle superfici, unendo estetica e durata strutturale. 
+                    Ridefinisce l'identità cromatica delle grandi opere attraverso il ferro e l'ossigeno.
                 </p>
                 <div class="tech-data-grid">
                     <span class="data-label">Applicazione</span>
@@ -166,24 +328,29 @@
 
         <footer>
             <div class="grid-left">
-                <p onclick="window.location.href='../../index.html'" style="cursor: pointer;">SOEMA</p>
+                <p id="footer-brand" onclick="window.location.href='../../index.html'" class="hover-effect" style="cursor: pointer;">SOEMA</p>
             </div>
-            <div class="grid-center"> 
-                <p style="display: block; margin:0; text-align: center;">
+            <div class="grid-center" id="footer-center"> 
+                <p id="txt-address" style="display: block; margin:0; text-align: center;">
                     20037, Via Roma 123, MI <br> info@soema.com
                 </p>
             </div>
-            <div class="grid-right">
-                <p id="btn-iscriviti" onclick="mostraForm()" style="cursor: pointer;">Iscriviti</p>
+            <div class="grid-right" id="subscribe-container">
+                <p id="btn-iscriviti" onclick="mostraForm()" class="hover-effect" style="cursor: pointer;">Iscriviti</p>
                 <form id="form-iscriviti" style="display: none;" onsubmit="inviaMail(event)">
                     <input type="email" placeholder="your@email.com" required style="background:transparent; border:none; border-bottom:1px solid #1d1815; outline:none; width:150px;">
+                    <button type="submit" style="background:transparent; border:none; cursor:pointer;">Invia</button>
                 </form>
             </div>
         </footer>
    </div>
 
     <script>
-        const images = ["../../contenuti/Emolite.jpg", "../../contenuti/Texture-Emolite.png", "../../contenuti/Cellule-Emolite.png"];
+        const images = [
+            "../../contenuti/Emolite.jpg", 
+            "../../contenuti/textureEmolite 2.png", 
+            "../../contenuti/cellule emolite.webp"
+        ];
         let currentIndex = 0;
         const imgElement = document.getElementById("hero-img");
         setInterval(() => {
